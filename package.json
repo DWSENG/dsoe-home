@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "dunwoody school of engineering homepage",
   "main": "index.js",
-  "repository": "",
+  "repository": "https://github.com/davidbrekke/dsoe-home",
   "author": "david magnuson",
   "license": "MIT",
   "private": "true",
