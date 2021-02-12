@@ -1,4 +1,4 @@
-![Dunwoody College of Technology](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.owler.com%2Fcompany%2Fdunwoody&psig=AOvVaw0_EbHgrS-_DSI0FDAPNTwy&ust=1613003347960000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCICsy-6H3u4CFQAAAAAdAAAAABAD)
+![Dunwoody College of Technology](https://image4.owler.com/logo/dunwoody-college-of-technology_owler_20160428_132411_original.png)
 
 # Dunwoody School of Engineering
 
@@ -10,7 +10,7 @@ senior project by david magnuson
 
 ### getting started
 
-make sure to have yarn installed
+🧶 make sure to have yarn installed
 : `npm i -g yarn`
 
 install dependencies
