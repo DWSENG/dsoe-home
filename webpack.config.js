@@ -16,7 +16,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     assetModuleFilename: 'assets/[hash][ext][query]',
-    publicPath: 'https://dsoe.netlify.app',
+    publicPath: 'https://dsoe.netlify.app/',
   },
 
   module: {
