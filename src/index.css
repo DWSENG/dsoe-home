@@ -15,6 +15,7 @@
   --grey: rgb(226, 226, 226);
   --greyClear: rgba(226, 226, 226, 0.8);
   --shadow-nav: 3px 2px 20px 10px rgba(82, 82, 82, 0.35);
+  --shadow-hov: 3px 2px 20px 13px rgba(82, 82, 82, 0.35);
   --shadow-icon: 3px 2px 25px 5px rgba(82, 82, 82, 0.35);
   --blur: blur(0.5em);
 
@@ -22,6 +23,7 @@
   --main-25: rgba(158, 41, 51, 0.25);
 
   --light: #f2f2ec;
+  --light2: rgba(242, 242, 236, 0.6);
   --light4: rgba(242, 242, 236, 0.4);
   --light-acc: #b4908d;
   --dark-acc: #ae895d;

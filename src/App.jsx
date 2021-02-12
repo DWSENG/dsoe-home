@@ -19,13 +19,17 @@ const AppContainer = styled.main`
   justify-content: space-between;
   position: relative;
   overflow: scroll;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `
-const PageContianer = styled.div`
-  flex: 1;
+const PageContianer = styled.section`
   display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 100vh;
 `
 export const App = () => {
   const [selected, setSelected] = useState('dashboard')

@@ -31,7 +31,7 @@ module.exports = {
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
         /* alt: asset/resources or asset/inline */
-        type: 'asset/resources',
+        type: 'asset',
       },
       {
         test: /\.jsx?$/,
@@ -50,7 +50,6 @@ module.exports = {
           //   // options for importing images in css
           //   options: { publicPath: '' },
           // },
-          // 'css-loader',
         ],
       },
     ],
