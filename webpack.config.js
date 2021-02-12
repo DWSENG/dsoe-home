@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 // const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 // const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin')
 const mode = process.env.NODE_ENV || 'development'
-const deps = require('./package.json').dependencies
+// const deps = require('./package.json').dependencies
 
 module.exports = {
   mode,
@@ -16,7 +16,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     assetModuleFilename: 'assets/[hash][ext][query]',
-    publicPath: 'http://localhost:8000/',
+    publicPath: 'https://dsoe.netlify.app',
   },
 
   module: {
