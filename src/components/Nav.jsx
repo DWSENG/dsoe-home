@@ -4,6 +4,82 @@ import { RiDashboardFill, RiQuestionFill } from 'react-icons/ri'
 import { FaGraduationCap } from 'react-icons/fa'
 import { MdClass } from 'react-icons/md'
 
+// Nav component
+export default ({ selected, setSelected }) => {
+  const iconSize = 20
+  const history = useHistory()
+
+  const handleNav = (page) => {
+    setSelected(`${page}`)
+    if (page === 'landing') {
+      history.push('/')
+    } else {
+      history.push(`/${page}`)
+    }
+  }
+
+  return (
+    <NavBar>
+      <IconsContainer>
+        {selected === 'landing' ? (
+          <SelectBtn onClick={() => handleNav('landing')}>
+            <RiDashboardFill size={iconSize} />
+            <p>landing</p>
+          </SelectBtn>
+        ) : (
+          <NavBtn onClick={() => handleNav('landing')}>
+            <RiDashboardFill size={iconSize} />
+            <p>landing</p>
+          </NavBtn>
+        )}
+        {selected === 'dashboard' ? (
+          <SelectBtn onClick={() => handleNav('dashboard')}>
+            <RiDashboardFill size={iconSize} />
+            <p>dashboard</p>
+          </SelectBtn>
+        ) : (
+          <NavBtn onClick={() => handleNav('dashboard')}>
+            <RiDashboardFill size={iconSize} />
+            <p>dashboard</p>
+          </NavBtn>
+        )}
+        {selected === 'courses' ? (
+          <SelectBtn onClick={() => handleNav('courses')}>
+            <MdClass size={iconSize} />
+            <p>courses</p>
+          </SelectBtn>
+        ) : (
+          <NavBtn onClick={() => handleNav('courses')}>
+            <MdClass size={iconSize} />
+            <p>courses</p>
+          </NavBtn>
+        )}
+        {selected === 'plan' ? (
+          <SelectBtn onClick={() => handleNav('plan')}>
+            <FaGraduationCap size={iconSize} />
+            <p>plan</p>
+          </SelectBtn>
+        ) : (
+          <NavBtn onClick={() => handleNav('plan')}>
+            <FaGraduationCap size={iconSize} />
+            <p>plan</p>
+          </NavBtn>
+        )}
+      </IconsContainer>
+      <SettingsContainer>
+        {selected === 'about' ? (
+          <SelectBtn onClick={() => handleNav('about')}>
+            <RiQuestionFill size={iconSize} />
+          </SelectBtn>
+        ) : (
+          <NavBtn onClick={() => handleNav('about')}>
+            <RiQuestionFill size={iconSize} />
+          </NavBtn>
+        )}
+      </SettingsContainer>
+    </NavBar>
+  )
+}
 // styled components
 const NavBar = styled.nav`
   height: 95vh;
@@ -73,69 +149,3 @@ const SelectBtn = styled(NavBtn)`
     transform: scale(1.05);
   }
 `
-
-// Nav component
-export default ({ selected, setSelected }) => {
-  const iconSize = 20
-  const history = useHistory()
-
-  const handleNav = (page) => {
-    setSelected(`${page}`)
-    if (page === 'dashboard') {
-      history.push('/')
-    } else {
-      history.push(`/${page}`)
-    }
-  }
-
-  return (
-    <NavBar>
-      <IconsContainer>
-        {selected === 'dashboard' ? (
-          <SelectBtn onClick={() => handleNav('dashboard')}>
-            <RiDashboardFill size={iconSize} />
-            <p>dashboard</p>
-          </SelectBtn>
-        ) : (
-          <NavBtn onClick={() => handleNav('dashboard')}>
-            <RiDashboardFill size={iconSize} />
-            <p>dashboard</p>
-          </NavBtn>
-        )}
-        {selected === 'courses' ? (
-          <SelectBtn onClick={() => handleNav('courses')}>
-            <MdClass size={iconSize} />
-            <p>courses</p>
-          </SelectBtn>
-        ) : (
-          <NavBtn onClick={() => handleNav('courses')}>
-            <MdClass size={iconSize} />
-            <p>courses</p>
-          </NavBtn>
-        )}
-        {selected === 'plan' ? (
-          <SelectBtn onClick={() => handleNav('plan')}>
-            <FaGraduationCap size={iconSize} />
-            <p>plan</p>
-          </SelectBtn>
-        ) : (
-          <NavBtn onClick={() => handleNav('plan')}>
-            <FaGraduationCap size={iconSize} />
-            <p>plan</p>
-          </NavBtn>
-        )}
-      </IconsContainer>
-      <SettingsContainer>
-        {selected === 'about' ? (
-          <SelectBtn onClick={() => handleNav('about')}>
-            <RiQuestionFill size={iconSize} />
-          </SelectBtn>
-        ) : (
-          <NavBtn onClick={() => handleNav('about')}>
-            <RiQuestionFill size={iconSize} />
-          </NavBtn>
-        )}
-      </SettingsContainer>
-    </NavBar>
-  )
-}
