@@ -25,6 +25,7 @@ const AppContainer = styled.main`
 `
 const PageContianer = styled.section`
   display: flex;
+  position: relative;
   flex: 1;
   flex-direction: column;
   align-items: center;
@@ -42,6 +43,7 @@ export const App = () => {
           <Route exact path="/" component={Dashboard} />
           <Route exact path="/courses" component={Courses} />
           <Route exact path="/plan" component={Plan} />
+          <Route exact path="/plan/id" component={Plan} />
           <Route exact path="/about" component={About} />
         </Switch>
       </PageContianer>
