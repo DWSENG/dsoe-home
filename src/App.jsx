@@ -15,7 +15,7 @@ export const App = () => {
 
   return (
     <AppContainer>
-      {/* if they're authenticated show the nav bar */}
+      {/* if authenticated show nav bar */}
       {isAuthenticated && <Nav page={page} setPage={setPage} />}
       <PageSwitch />
     </AppContainer>
