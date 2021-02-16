@@ -1,14 +1,3 @@
-import React from 'react'
-import styled from 'styled-components'
+import { Page } from '../styles/containers'
 
-const DashP = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 1em;
-  padding: 5em;
-  margin: 1em;
-`
-
-export default () => <DashP>dashboard</DashP>
+export default () => <Page>dashboard</Page>
