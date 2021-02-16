@@ -30,8 +30,13 @@ export const Btn = styled.button`
   }
 `
 export const Heading = styled.h1`
-  color: ${({ main }) => (main ? 'var(--dark)' : 'var(--light)')};
+  color: ${({ dark }) => (dark ? 'var(--dark)' : 'var(--light)')};
   font-size: 3em;
+`
+export const SubHeading = styled.p`
+  color: ${({ dark }) => (dark ? 'var(--main)' : 'var(--light4)')};
+  font-size: 0.75em;
+  margin-left: 0.5em;
 `
 export const Login = styled.section`
   display: flex;

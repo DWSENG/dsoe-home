@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { RiDashboardFill, RiQuestionFill } from 'react-icons/ri'
 import { FaGraduationCap } from 'react-icons/fa'
 import { MdClass } from 'react-icons/md'
+import logo from '../images/logo-white.png'
 
 export default ({ page, setPage }) => {
   const iconSize = 20
@@ -21,11 +22,7 @@ export default ({ page, setPage }) => {
   return (
     <NavBar>
       <IconsContainer>
-        <Logo
-          src="https://dunwoody.edu/wp-content/uploads/2018/04/Logo_Final_White-web.png"
-          alt="Dunwoody"
-          onClick={() => handleNav('landing')}
-        />
+        <Logo src={logo} alt="Dunwoody" onClick={() => handleNav('landing')} />
         {page === 'dashboard' ? (
           <SelectBtn onClick={() => handleNav('dashboard')}>
             <RiDashboardFill size={iconSize} />

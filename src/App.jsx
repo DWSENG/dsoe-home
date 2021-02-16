@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { render } from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
-import './styles/index.css'
+import './index.css'
 import { useProxy } from 'valtio'
 import store from './store'
 import PageSwitch from './routes/PageSwitch'

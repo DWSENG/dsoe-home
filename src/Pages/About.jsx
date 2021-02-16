@@ -1,2 +1,2 @@
 import { Page } from '../styles/containers'
-export default () => <AboutP>About</AboutP>
+export default () => <Page>About</Page>
