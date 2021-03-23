@@ -1,30 +1,38 @@
-import { useState } from 'react'
 import { render } from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
-import './index.css'
 import { useProxy } from 'valtio'
 import store from './store'
-import PageSwitch from './routes/PageSwitch'
-import { AppContainer } from './styles/containers'
+import { ThemeProvider } from 'styled-components'
 
+import { AppContainer } from './styles/containers'
 import Nav from './components/Nav'
+import Landing from './pages/Landing'
+import PageSwitch from './routes/PageSwitch'
+
+import GlobalStyles from './theme/globalStyles'
+import theme from './theme/theme'
 
 export const App = () => {
-  const [page, setPage] = useState('landing')
   const { isAuthenticated } = useProxy(store)
 
-  return (
+  return isAuthenticated ? (
     <AppContainer>
-      {/* if authenticated show nav bar */}
-      {isAuthenticated && <Nav page={page} setPage={setPage} />}
+      <Nav />
       <PageSwitch />
+    </AppContainer>
+  ) : (
+    <AppContainer>
+      <Landing />
     </AppContainer>
   )
 }
 
 render(
   <BrowserRouter>
-    <App />
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <App />
+    </ThemeProvider>
   </BrowserRouter>,
   document.getElementById('root')
 )
