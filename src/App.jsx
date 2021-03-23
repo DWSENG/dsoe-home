@@ -1,13 +1,38 @@
 import { render } from 'react-dom'
-import './index.css'
-// const Nav = lazy(() => import('dsoe-ui/Nav'))
+import { BrowserRouter } from 'react-router-dom'
+import { useProxy } from 'valtio'
+import store from './store'
+import { ThemeProvider } from 'styled-components'
 
-const App = () => {
-  return (
-    <>
-      <h1>Dunwoody School of Engineering</h1>
-    </>
+import { AppContainer } from './styles/containers'
+import Nav from './components/Nav'
+import Landing from './pages/Landing'
+import PageSwitch from './routes/PageSwitch'
+
+import GlobalStyles from './theme/globalStyles'
+import theme from './theme/theme'
+
+export const App = () => {
+  const { isAuthenticated } = useProxy(store)
+
+  return isAuthenticated ? (
+    <AppContainer>
+      <Nav />
+      <PageSwitch />
+    </AppContainer>
+  ) : (
+    <AppContainer>
+      <Landing />
+    </AppContainer>
   )
 }
 
-render(<App />, document.getElementById('root'))
+render(
+  <BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <App />
+    </ThemeProvider>
+  </BrowserRouter>,
+  document.getElementById('root')
+)
