@@ -1,18 +1,20 @@
-import { NavBar, IconsContainer, SettingsContainer } from '../styles/containers'
-import { NavBtn, SelectBtn, Logo } from '../styles/items'
+import { useState } from 'react'
+import { NavBar, Wrapper } from '../styles/containers'
+import { Btn } from '../styles/items'
+import Logo from './Logo'
 import { useHistory } from 'react-router-dom'
 import { RiDashboardFill, RiQuestionFill } from 'react-icons/ri'
 import { FaGraduationCap } from 'react-icons/fa'
 import { MdClass } from 'react-icons/md'
-import logo from '../images/logo-white.png'
 
-export default ({ page, setPage }) => {
+export default () => {
   const iconSize = 20
+  const [page, setPage] = useState('dashboard')
   const history = useHistory()
 
   const handleNav = (page) => {
     setPage(`${page}`)
-    if (page === 'landing') {
+    if (page === 'dashboard') {
       history.push('/')
     } else {
       history.push(`/${page}`)
@@ -21,56 +23,56 @@ export default ({ page, setPage }) => {
 
   return (
     <NavBar>
-      <IconsContainer>
-        <Logo src={logo} alt="Dunwoody" onClick={() => handleNav('landing')} />
+      <Wrapper nav column>
+        <Logo handleNav={handleNav} />
         {page === 'dashboard' ? (
-          <SelectBtn onClick={() => handleNav('dashboard')}>
+          <Btn navSelected onClick={() => handleNav('dashboard')}>
             <RiDashboardFill size={iconSize} />
             <h3>dashboard</h3>
-          </SelectBtn>
+          </Btn>
         ) : (
-          <NavBtn onClick={() => handleNav('dashboard')}>
+          <Btn nav onClick={() => handleNav('dashboard')}>
             <RiDashboardFill size={iconSize} />
             <h3>dashboard</h3>
-          </NavBtn>
+          </Btn>
         )}
         {page === 'courses' ? (
-          <SelectBtn onClick={() => handleNav('courses')}>
+          <Btn navSelected onClick={() => handleNav('courses')}>
             <MdClass size={iconSize} />
             <h3>courses</h3>
-          </SelectBtn>
+          </Btn>
         ) : (
-          <NavBtn onClick={() => handleNav('courses')}>
+          <Btn nav onClick={() => handleNav('courses')}>
             <MdClass size={iconSize} />
             <h3>courses</h3>
-          </NavBtn>
+          </Btn>
         )}
         {page === 'plan' ? (
-          <SelectBtn onClick={() => handleNav('plan')}>
+          <Btn navSelected onClick={() => handleNav('plan')}>
             <FaGraduationCap size={iconSize} />
             <h3>plan</h3>
-          </SelectBtn>
+          </Btn>
         ) : (
-          <NavBtn onClick={() => handleNav('plan')}>
+          <Btn nav onClick={() => handleNav('plan')}>
             <FaGraduationCap size={iconSize} />
             <h3>plan</h3>
-          </NavBtn>
+          </Btn>
         )}
-      </IconsContainer>
-      <SettingsContainer>
-        {page === 'about' ? (
-          <SelectBtn
-            style={{ cursor: 'help' }}
-            onClick={() => handleNav('about')}
-          >
-            <RiQuestionFill size={iconSize} />
-          </SelectBtn>
-        ) : (
-          <NavBtn style={{ cursor: 'help' }} onClick={() => handleNav('about')}>
-            <RiQuestionFill size={iconSize} />
-          </NavBtn>
-        )}
-      </SettingsContainer>
+      </Wrapper>
+      {page === 'about' ? (
+        <Btn
+          navSelected
+          nav
+          style={{ cursor: 'help' }}
+          onClick={() => handleNav('about')}
+        >
+          <RiQuestionFill size={iconSize} />
+        </Btn>
+      ) : (
+        <Btn nav style={{ cursor: 'help' }} onClick={() => handleNav('about')}>
+          <RiQuestionFill size={iconSize} />
+        </Btn>
+      )}
     </NavBar>
   )
 }

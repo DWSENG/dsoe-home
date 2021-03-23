@@ -1,6 +1,6 @@
 import { PublicClientApplication } from '@azure/msal-browser'
 
-const msalConfig = {
+export const msalConfig = {
   auth: {
     clientId: 'bb72efbb-2629-49d9-b101-d2c8055237dc',
     authority:
@@ -10,7 +10,7 @@ const msalConfig = {
   postLogoutRedirectUri: 'https://dsoe.netlify.app/',
 }
 
-var loginRequest = {
+export const loginRequest = {
   scopes: ['user.read'],
 }
 
@@ -20,15 +20,18 @@ export const useLogin = async () => {
   try {
     const { account } = await msalInstance.loginPopup(loginRequest)
     console.log(account)
+    // TODO: query internal db to see if user is registered
     if (account) return account
   } catch (err) {
     console.log(err)
   }
 }
-export const logout = async () => {
+export const logout = (account) => {
   try {
-    msalInstance.logout(/*{ account: currentAccount }*/)
+    msalInstance.logout({ account: account })
+    return true
   } catch (err) {
     console.log(err)
+    return false
   }
 }
