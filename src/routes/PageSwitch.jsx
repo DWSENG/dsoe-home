@@ -1,36 +1,23 @@
 import { Route, Switch } from 'react-router-dom'
-import PrivateRoute from './PrivateRoute'
-import styled from 'styled-components'
 
 import About from '../Pages/About'
+import Error from '../Pages/Error'
 import Courses from '../Pages/Courses'
+import Course from '../Pages/Course'
+import CourseEdit from '../Pages/CourseEdit'
 import Dashboard from '../Pages/Dashboard'
-import Landing from '../Pages/Landing'
 import Plan from '../Pages/Plan'
 
-export default () => (
-  <PageSwitch>
+export default () => {
+  return (
     <Switch>
-      <Route exact path="/">
-        <Landing />
-      </Route>
-      <PrivateRoute path="/dashboard">
-        <Dashboard />
-      </PrivateRoute>
-      <PrivateRoute path="/courses">
-        <Courses />
-      </PrivateRoute>
-      <PrivateRoute path="/plan">
-        <Plan />
-      </PrivateRoute>
-      <Route path="/about" component={About} />
+      <Route exact path="/" component={Dashboard} />
+      <Route exact path="/courses" component={Courses} />
+      <Route exact path="/courses/:id" component={Course} />
+      <Route exact path="/courses/:id/edit" component={CourseEdit} />
+      <Route exact path="/plan" component={Plan} />
+      <Route exact path="/about" component={About} />
+      <Route path="/" component={Error} />
     </Switch>
-  </PageSwitch>
-)
-const PageSwitch = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`
+  )
+}

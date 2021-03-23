@@ -1,10 +1,32 @@
-import { useProxy } from 'valtio'
-import store from '../store'
-import Welcome from '../components/Welcome'
-import Login from '../components/Login'
+import { authenticate } from '../store'
+import { Btn, Title, SubHeading } from '../styles/items'
+import { LandingContainer } from '../styles/containers'
+import { useLogin } from '../utils/msalConfig'
+import { useHistory } from 'react-router-dom'
 
 export default () => {
-  const { isAuthenticated } = useProxy(store)
+  const history = useHistory()
 
-  return isAuthenticated ? <Welcome /> : <Login />
+  const handleLogin = async () => {
+    const account = await useLogin()
+    if (account) {
+      authenticate(account)
+    }
+    history.push('/')
+  }
+
+  return (
+    <LandingContainer>
+      <Title landing xl>
+        Dunwoody
+        <b />
+        <SubHeading landing>school of</SubHeading>
+        <b />
+        Engineering
+      </Title>
+      <Btn secondary onClick={handleLogin}>
+        login
+      </Btn>
+    </LandingContainer>
+  )
 }
