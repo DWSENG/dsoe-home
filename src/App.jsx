@@ -6,7 +6,7 @@ import { ThemeProvider } from 'styled-components'
 
 import { AppContainer } from './styles/containers'
 import Nav from './components/Nav'
-import Landing from './pages/Landing'
+import Landing from './Pages/Landing'
 import PageSwitch from './routes/PageSwitch'
 
 import GlobalStyles from './theme/globalStyles'
