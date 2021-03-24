@@ -4,6 +4,11 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 // const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin')
 // const deps = require('./package.json').dependencies
 
+const publicPath =
+  process.env.NODE_ENV === 'production'
+    ? 'https://dsoe.netlify.app/'
+    : 'http://localhost:8000'
+
 module.exports = {
   mode: process.env.NODE_ENV || 'development',
 
@@ -14,7 +19,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     // assetModuleFilename: 'assets/[hash][ext][query]',
-    publicPath: 'https://dsoe.netlify.app/',
+    publicPath: publicPath,
   },
 
   module: {

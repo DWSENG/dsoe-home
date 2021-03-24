@@ -1,13 +1,18 @@
 import { PublicClientApplication } from '@azure/msal-browser'
 
+const redirectPath =
+  process.env.NODE_ENV === 'production'
+    ? 'https://dsoe.netlify.app/'
+    : 'http://localhost:8000'
+
 export const msalConfig = {
   auth: {
     clientId: 'bb72efbb-2629-49d9-b101-d2c8055237dc',
     authority:
       'https://login.microsoftonline.com/33b985f1-1b99-4741-b69c-46b9998d9b18',
   },
-  redirectUri: 'https://dsoe.netlify.app/',
-  postLogoutRedirectUri: 'https://dsoe.netlify.app/',
+  redirectUri: redirectPath,
+  postLogoutRedirectUri: redirectPath,
 }
 
 export const loginRequest = {
