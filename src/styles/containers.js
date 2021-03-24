@@ -25,9 +25,22 @@ export const Wrapper = styled.div`
 
   width: ${({ width }) => (width ? width : '100%')};
   height: ${({ height }) => (height ? height : 'auto')};
-  border-radius: 0.75rem;
-  box-shadow: ${({ theme, shadow }) => (shadow ? theme.shadow.sm : '0')};
+  padding: ${({ padding }) => (padding ? padding : '0')};
+  margin: ${({ margin }) => (margin ? margin : '0')};
+  border-radius: ${({ radius }) => (radius ? radius : '0')};
   overflow: ${({ scroll }) => (scroll ? 'auto' : 'visible')};
+  box-shadow: ${({ theme, shadow }) => (shadow ? theme.shadow.sm : '0')};
+  -webkit-box-shadow: ${({ theme, shadow }) =>
+    shadow ? theme.shadow.sm : '0'};
+  -moz-box-shadow: ${({ theme, shadow }) => (shadow ? theme.shadow.sm : '0')};
+  transition: box-shadow 200ms;
+
+  &:hover {
+    -webkit-box-shadow: ${({ theme, hover }) =>
+      hover ? theme.shadow.md : '0'};
+    -moz-box-shadow: ${({ theme, hover }) => (hover ? theme.shadow.md : '0')};
+    box-shadow: ${({ theme, hover }) => (hover ? theme.shadow.md : '0')};
+  }
 
   ${({ nav }) =>
     nav &&
@@ -40,19 +53,6 @@ export const Wrapper = styled.div`
       }
     `}
 
-  ${({ padding }) =>
-    padding &&
-    css`
-      padding: 2rem;
-      @media ${({ theme }) => theme.media.tablet} {
-        padding: 1rem;
-      }
-    `}
-  ${({ margin }) =>
-    margin &&
-    css`
-      margin: ${margin};
-    `}
   ${({ marginT }) =>
     marginT &&
     css`
@@ -113,27 +113,7 @@ export const NavBar = styled.nav`
     justify-content: space-around;
   }
 `
-export const SearchContainer = styled.div`
-  padding: 0.75em 1.5em;
-  display: flex;
-  border-radius: ${({ theme }) => theme.radius.pill};
-  align-items: center;
-  justify-content: space-between;
-  -webkit-box-shadow: ${({ theme }) => theme.shadow.sm};
-  -moz-box-shadow: ${({ theme }) => theme.shadow.sm};
-  box-shadow: ${({ theme }) => theme.shadow.sm};
-  transition: transform 250ms;
-  &:hover,
-  &:focus,
-  &:active {
-    -webkit-box-shadow: ${({ theme }) => theme.shadow.md};
-    -moz-box-shadow: ${({ theme }) => theme.shadow.md};
-    box-shadow: ${({ theme }) => theme.shadow.md};
-  }
-  @media ${({ theme }) => theme.media.tablet} {
-    margin-bottom: 1rem;
-  }
-`
+
 export const LandingContainer = styled.section`
   display: flex;
   background: ${({ theme }) => theme.colors.pri};

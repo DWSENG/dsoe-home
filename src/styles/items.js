@@ -217,15 +217,11 @@ export const Input = styled.input`
   outline: none;
   background: transparent;
   font-size: ${({ fontSize }) => (fontSize ? fontSize : '1.5rem')};
-  border: none;
+  border: ${({ theme, border }) =>
+    border ? `2px solid ${theme.colors.pri}` : 'none'};
   border-radius: 1rem;
   overflow: hidden;
   padding: ${({ padding }) => (padding ? padding : '.5rem')};
-  ${({ border }) =>
-    border &&
-    css`
-      border: 2px solid ${({ theme }) => theme.colors.pri};
-    `}
 `
 export const Label = styled.label`
   font-size: 1rem;
