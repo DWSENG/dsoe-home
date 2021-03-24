@@ -6,35 +6,46 @@ import { Page, Wrapper } from '../styles/containers'
 import { Title, Btn, Text } from '../styles/items'
 import CourseCard from '../components/CourseCard'
 import SearchBox from '../components/SearchBox'
+import AddCourseModal from '../components/modals/AddCourseModal'
 
 export default () => {
   const [search, setSearch] = useState('')
-  const { courses, courseSearch } = useProxy(store)
+  const [isOpen, setIsOpen] = useState(false)
+  const { courses, courseSearch, isAdmin } = useProxy(store)
 
   useEffect(() => {
     setSearch(courseSearch)
   }, [])
+
+  const openModal = () => setIsOpen(true)
+  const closeModal = () => setIsOpen(false)
 
   const filteredCourses = courses.filter(({ title, id }) => {
     if (search == '') return { title, id }
     if (
       title.toLowerCase().includes(search.toLowerCase()) ||
       id.toLowerCase().includes(search.toLowerCase())
-    )
+    ) {
       return title, id
+    }
 
     return
   })
 
   return (
     <Page column>
+      <AddCourseModal isOpen={isOpen} closeModal={closeModal} />
       <Wrapper
         padding="2rem 4rem"
         alignItems="center"
         justifyContent="space-between"
       >
         <Title>Courses</Title>
-        <Btn secondary>add</Btn>
+        {isAdmin && (
+          <Btn secondary onClick={openModal}>
+            add
+          </Btn>
+        )}
       </Wrapper>
       <SearchBox
         search={search}

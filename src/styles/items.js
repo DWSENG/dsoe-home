@@ -31,6 +31,22 @@ export const Btn = styled.button`
     css`
       background: ${({ theme }) => theme.colors.sec};
     `}
+  ${({ secondaryDisabled }) =>
+    secondaryDisabled &&
+    css`
+      background: ${({ theme }) => theme.colors.sec2};
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+      cursor: auto;
+      &:hover {
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        transform: scale(1);
+      }
+    `}
+  
   // TERTIARY BTN
   ${({ tertiary }) =>
     tertiary &&
@@ -174,9 +190,9 @@ export const SubHeading = styled.p`
     `}
 `
 export const Text = styled.p`
-  color: ${({ theme, color }) => (color ? color : theme.colors.dark)};
-  font-size: ${({ fontSize }) => (fontSize ? fontSize : '1rem')};
-  margin: ${({ margin }) => (margin ? margin : '0')};
+  color: ${({ theme, color }) => color || theme.colors.dark};
+  font-size: ${({ fontSize }) => fontSize || '1rem'};
+  margin: ${({ margin }) => margin || '0'};
   text-align: center;
   ${({ primary }) =>
     primary &&
@@ -213,26 +229,44 @@ export const Img = styled.img`
     display: none;
   }
 `
-export const Input = styled.input`
+export const Input = styled.input.attrs(({ type }) => ({
+  type: type || 'text',
+}))`
   outline: none;
   background: transparent;
-  font-size: ${({ fontSize }) => (fontSize ? fontSize : '1.5rem')};
+  font-size: ${({ fontSize }) => fontSize || '1.5rem'};
   border: ${({ theme, border }) =>
     border ? `2px solid ${theme.colors.pri}` : 'none'};
   border-radius: 1rem;
   overflow: hidden;
-  padding: ${({ padding }) => (padding ? padding : '.5rem')};
+  padding: ${({ padding }) => padding || '.5rem'};
+
+  ${({ modal }) =>
+    modal &&
+    css`
+      border: ${({ theme }) => `2px solid ${theme.colors.white}`};
+      color: ${({ theme }) => theme.colors.dark};
+      background: ${({ theme }) => theme.colors.white};
+      &::placeholder {
+        color: ${({ theme }) => theme.colors.light};
+      }
+    `};
 `
 export const Label = styled.label`
   font-size: 1rem;
   padding: 0.5rem;
+  margin-left: 1rem;
+  ${({ modal }) =>
+    modal &&
+    css`
+      color: ${({ theme }) => theme.colors.light};
+    `};
 `
 export const Card = styled.article`
   cursor: pointer;
-  width: ${({ width }) => (width ? width : '200px')};
-  height: ${({ height }) => (height ? height : '200px')};
-  background: ${({ theme, background }) =>
-    background ? background : theme.colors.white};
+  width: ${({ width }) => width || '200px'};
+  height: ${({ height }) => height || '200px'};
+  background: ${({ theme, background }) => background || theme.colors.white};
   border-radius: ${({ theme }) => theme.radius.md};
   padding: 1rem;
   margin: 1rem;

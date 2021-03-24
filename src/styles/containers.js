@@ -17,17 +17,16 @@ export const AppContainer = styled.main`
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: ${({ column }) => (column ? 'column' : 'row')};
-  flex: ${({ flex }) => (flex ? flex : '0 1 auto')};
+  flex: ${({ flex }) => flex || '0 1 auto'};
   flex-wrap: ${({ flexWrap }) => (flexWrap ? 'wrap' : 'nowrap')};
-  align-items: ${({ alignItems }) => (alignItems ? alignItems : 'normal')};
-  justify-content: ${({ justifyContent }) =>
-    justifyContent ? justifyContent : 'normal'};
+  align-items: ${({ alignItems }) => alignItems || 'normal'};
+  justify-content: ${({ justifyContent }) => justifyContent || 'normal'};
 
-  width: ${({ width }) => (width ? width : '100%')};
-  height: ${({ height }) => (height ? height : 'auto')};
-  padding: ${({ padding }) => (padding ? padding : '0')};
-  margin: ${({ margin }) => (margin ? margin : '0')};
-  border-radius: ${({ radius }) => (radius ? radius : '0')};
+  width: ${({ width }) => width || '100%'};
+  height: ${({ height }) => height || 'auto'};
+  padding: ${({ padding }) => padding || '0'};
+  margin: ${({ margin }) => margin || '0'};
+  border-radius: ${({ radius }) => radius || '0'};
   overflow: ${({ scroll }) => (scroll ? 'auto' : 'visible')};
   box-shadow: ${({ theme, shadow }) => (shadow ? theme.shadow.sm : '0')};
   -webkit-box-shadow: ${({ theme, shadow }) =>
@@ -76,12 +75,11 @@ export const Wrapper = styled.div`
 `
 export const Page = styled.section`
   flex: 1;
-  display: ${({ display }) => (display ? display : 'flex')};
+  display: ${({ display }) => display || 'flex'};
   flex-direction: ${({ column }) => (column ? 'column' : 'row')};
-  justify-content: ${({ justifyContent }) =>
-    justifyContent ? justifyContent : 'flex-start'};
+  justify-content: ${({ justifyContent }) => justifyContent || 'flex-start'};
   align-items: center;
-  padding: ${({ padding }) => (padding ? padding : '0')};
+  padding: ${({ padding }) => padding || '0'};
   position: relative;
   height: 100vh;
   width: auto;
