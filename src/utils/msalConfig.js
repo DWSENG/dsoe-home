@@ -3,7 +3,7 @@ import { PublicClientApplication } from '@azure/msal-browser'
 const redirectPath =
   process.env.NODE_ENV === 'production'
     ? 'https://dsoe.netlify.app/'
-    : 'http://localhost:8000'
+    : 'http://localhost:8000/'
 
 export const msalConfig = {
   auth: {

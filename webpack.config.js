@@ -7,7 +7,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const publicPath =
   process.env.NODE_ENV === 'production'
     ? 'https://dsoe.netlify.app/'
-    : 'http://localhost:8000'
+    : 'http://localhost:8000/'
 
 module.exports = {
   mode: process.env.NODE_ENV || 'development',
