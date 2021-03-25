@@ -2,58 +2,35 @@ import store from '../store'
 import { useProxy } from 'valtio'
 
 import { Page, Wrapper } from '../styles/containers'
-import { Title, SubHeading, Btn, Text, Card } from '../styles/items'
+import { Title, Btn, Text, Card } from '../styles/items'
 import TermCard from '../components/TermCard'
 
 export default () => {
   const { courses } = useProxy(store)
 
-  // const dragStart = (evt) => {
-  //   evt.dataTransfer.setData('text', evt.target.firstChild.innerText)
-  // }
-  // const dragEnd = (evt) => {
-  //   // evt.dataTransfer.setData('text', (evt.target.style.background = 'white'))
-  // }
-  // const drag = (evt) => {
-  //   // evt.dataTransfer.setData('text', (evt.target.style.background = 'blue'))
-  // }
-  // const dragOver = (evt) => {
-  //   evt.preventDefault()
-  // }
-  // const drop = (evt) => {
-  //   evt.preventDefault()
-  //   console.log(evt.dataTransfer.getData('text'))
-  // }
-
   return (
     <Page column>
-      <Wrapper padding alignItems="center">
+      {/* heading */}
+      <Wrapper padding="2rem 0 0 4rem" alignItems="center">
         <Title>Plan</Title>
       </Wrapper>
-
-      <Wrapper
-        padding
-        flex="1"
-        alignItems="center"
-        justifyContent="space-between"
-      >
+      {/* content wrapper */}
+      <Wrapper padding="1rem 1rem 0 1rem" flex="1" scroll>
+        {/* terms wrapper */}
         <Wrapper
           flexWrap
-          marginR="1.5rem"
+          margin="0 1rem 1rem 0"
           shadow
-          scroll
-          height="100%"
+          radius=".75rem"
           flex="3"
-          justifyContent="center"
+          justifyContent="space-around"
           alignItems="space-around"
+          max-height="100%"
+          scroll
         >
-          <Wrapper
-            marginT="1rem"
-            marginL="2rem"
-            width="100%"
-            height="min-content"
-          >
-            <SubHeading>Terms</SubHeading>
+          {/* terms title wrapper */}
+          <Wrapper margin="1rem 0 0 2rem" width="100%">
+            <Text fontSize="1.5rem">Terms</Text>
           </Wrapper>
           <TermCard />
           <TermCard />
@@ -63,28 +40,22 @@ export default () => {
           <TermCard />
           <TermCard />
         </Wrapper>
-        <Wrapper flexWrap shadow height="100%" flex="1.5">
-          <Wrapper
-            marginT="1rem"
-            marginL="2rem"
-            width="100%"
-            height="min-content"
-          >
-            <SubHeading>Courses</SubHeading>
+        {/* courses wrapper */}
+        <Wrapper
+          flexWrap
+          shadow
+          scroll
+          radius=".75rem"
+          margin="0 0 1rem 0"
+          max-height="100%"
+          flex="1"
+        >
+          {/* courses title wrapper */}
+          <Wrapper width="100%" margin="1rem 0 0 2rem">
+            <Text fontSize="1.5rem">Courses</Text>
           </Wrapper>
           {courses.map((course, key) => (
-            <Card
-              key={key}
-              draggable="true"
-              width="auto"
-              height="auto"
-              // transform="1.01"
-              // onDragStart={dragStart}
-              // onDragEnd={dragEnd}
-              // onDrag={drag}
-              // onDragOver={dragOver}
-              // onDrop={drop}
-            >
+            <Card key={key} draggable="true" width="auto" height="auto">
               <Text>{course.title}</Text>
               <Wrapper alignItems="center" justifyContent="space-around">
                 <Text primary fontSize=".75rem">

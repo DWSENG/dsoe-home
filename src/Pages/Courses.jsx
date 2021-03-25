@@ -33,7 +33,7 @@ export default () => {
   })
 
   return (
-    <Page column>
+    <Page column scroll>
       <AddCourseModal isOpen={isOpen} closeModal={closeModal} />
       <Wrapper
         padding="2rem 4rem"

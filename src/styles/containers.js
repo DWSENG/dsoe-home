@@ -9,9 +9,10 @@ export const AppContainer = styled.main`
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 0.5rem;
+  padding: 0.5rem 0 0.5rem 0.5rem;
   @media ${({ theme }) => theme.media.tablet} {
     flex-direction: column;
+    padding: 0.5rem 0.5rem 0 0.5rem;
   }
 `
 export const Wrapper = styled.div`
@@ -21,7 +22,7 @@ export const Wrapper = styled.div`
   flex-wrap: ${({ flexWrap }) => (flexWrap ? 'wrap' : 'nowrap')};
   align-items: ${({ alignItems }) => alignItems || 'normal'};
   justify-content: ${({ justifyContent }) => justifyContent || 'normal'};
-
+  background: transparent;
   width: ${({ width }) => width || '100%'};
   height: ${({ height }) => height || 'auto'};
   padding: ${({ padding }) => padding || '0'};
@@ -51,27 +52,6 @@ export const Wrapper = styled.div`
         align-items: center;
       }
     `}
-
-  ${({ marginT }) =>
-    marginT &&
-    css`
-      margin-top: ${marginT};
-    `}
-  ${({ marginB }) =>
-    marginB &&
-    css`
-      margin-bottom: ${marginB};
-    `}
-  ${({ marginL }) =>
-    marginL &&
-    css`
-      margin-left: ${marginL};
-    `}
-  ${({ marginR }) =>
-    marginR &&
-    css`
-      margin-right: ${marginR};
-    `}
 `
 export const Page = styled.section`
   flex: 1;
@@ -85,7 +65,7 @@ export const Page = styled.section`
   width: auto;
   max-width: 1919px;
   min-width: 320px;
-  overflow: auto;
+  overflow: ${({ scroll }) => (scroll ? 'auto' : 'hidden')};
 
   @media ${({ theme }) => theme.media.tablet} {
     height: auto;
