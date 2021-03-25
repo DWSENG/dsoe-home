@@ -3,6 +3,7 @@ import { proxy } from 'valtio'
 const store = proxy({
   isAuthenticated: false,
   userAccount: {},
+  isAdmin: true,
   courseSearch: '',
   courses: [
     // {
