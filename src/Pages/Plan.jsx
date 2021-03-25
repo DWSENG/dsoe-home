@@ -3,7 +3,7 @@ import { useProxy } from 'valtio'
 
 import { Page, Wrapper } from '../styles/containers'
 import { Title, Btn, Text, Card } from '../styles/items'
-import TermCard from '../components/TermCard'
+import TermCard from '../components/cards/TermCard'
 
 export default () => {
   const { courses } = useProxy(store)

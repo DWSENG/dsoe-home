@@ -4,7 +4,7 @@ import store, { setCourseSearch } from '../store'
 
 import { Page, Wrapper } from '../styles/containers'
 import { Title, Btn, Text } from '../styles/items'
-import CourseCard from '../components/CourseCard'
+import CourseCard from '../components/cards/CourseCard'
 import SearchBox from '../components/SearchBox'
 import AddCourseModal from '../components/modals/AddCourseModal'
 
