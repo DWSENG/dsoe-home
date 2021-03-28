@@ -7,6 +7,7 @@ import { Page, Wrapper } from '../styles/containers'
 import { Title, Btn, Text, Card } from '../styles/items'
 import SearchBox from '../components/SearchBox'
 import AddTermModal from '../components/modals/AddTermModal'
+import TermCard from '../components/cards/TermCard'
 
 export default () => {
   const history = useHistory()
@@ -67,17 +68,7 @@ export default () => {
       >
         {filteredTerms.length > 0 ? (
           filteredTerms.map((term, key) => (
-            <Card
-              radius=".75rem"
-              key={key}
-              column
-              width="auto"
-              height="max-content"
-              onClick={() => handleClick(`${term.season}${term.year}`)}
-            >
-              <p>{term.season}</p>
-              <p>{term.year}</p>
-            </Card>
+            <TermCard key={key} term={term} handleClick={handleClick} />
           ))
         ) : (
           <Text>no term found matching '{search}'</Text>

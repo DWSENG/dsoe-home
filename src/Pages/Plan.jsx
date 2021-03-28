@@ -5,7 +5,7 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 
 import { Page, Wrapper } from '../styles/containers'
 import { Title, Btn, Text } from '../styles/items'
-import TermCard from '../components/cards/TermCard'
+import PlanTermCard from '../components/cards/PlanTermCard'
 import PlanCourseCard from '../components/cards/PlanCourseCard'
 
 export default () => {
@@ -68,7 +68,7 @@ export default () => {
             <Text fontSize="1.5rem">Terms</Text>
           </Wrapper>
           {allTerms.map((term, index) => (
-            <TermCard key={index} term={term} index={index} />
+            <PlanTermCard key={index} term={term} index={index} />
           ))}
         </Wrapper>
         {/* courses wrapper */}
