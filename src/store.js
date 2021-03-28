@@ -5,6 +5,8 @@ const store = proxy({
   userAccount: {},
   isAdmin: true,
   courseSearch: '',
+  studentSearch: '',
+  termSearch: '',
   courses: [
     // {
     //   title: 'Operating Systems',
@@ -27,93 +29,335 @@ const store = proxy({
       credits: '3',
       required: false,
     },
-    { title: 'Security I', id: 'SENG3400', credits: '2', required: true },
+    { title: 'Database Systems', id: 'SENG3400', credits: '5', required: true },
     {
-      title: 'Software Architecture',
-      id: 'SENG3400',
+      title: 'Human Computer Interaction',
+      id: 'SENG3500',
       credits: '3',
-      required: true,
-    },
-    {
-      title: 'Operating Systems',
-      id: 'SENG3400',
-      credits: '4',
       required: false,
     },
     { title: 'Database Systems', id: 'SENG3400', credits: '5', required: true },
     {
       title: 'Human Computer Interaction',
-      id: 'SENG3400',
+      id: 'SENG3500',
       credits: '3',
-      required: false,
-    },
-    { title: 'Security I', id: 'SENG3400', credits: '2', required: true },
-    {
-      title: 'Software Architecture',
-      id: 'SENG3400',
-      credits: '3',
-      required: true,
-    },
-    {
-      title: 'Operating Systems',
-      id: 'SENG3400',
-      credits: '4',
       required: false,
     },
     { title: 'Database Systems', id: 'SENG3400', credits: '5', required: true },
     {
       title: 'Human Computer Interaction',
-      id: 'SENG3400',
+      id: 'SENG3500',
       credits: '3',
-      required: false,
-    },
-    { title: 'Security I', id: 'SENG3400', credits: '2', required: true },
-    {
-      title: 'Software Architecture',
-      id: 'SENG3400',
-      credits: '3',
-      required: true,
-    },
-    {
-      title: 'Operating Systems',
-      id: 'SENG3400',
-      credits: '4',
       required: false,
     },
     { title: 'Database Systems', id: 'SENG3400', credits: '5', required: true },
     {
       title: 'Human Computer Interaction',
-      id: 'SENG3400',
+      id: 'SENG3500',
       credits: '3',
-      required: false,
-    },
-    { title: 'Security I', id: 'SENG3400', credits: '2', required: true },
-    {
-      title: 'Software Architecture',
-      id: 'SENG3400',
-      credits: '3',
-      required: true,
-    },
-    {
-      title: 'Operating Systems',
-      id: 'SENG3400',
-      credits: '4',
       required: false,
     },
     { title: 'Database Systems', id: 'SENG3400', credits: '5', required: true },
     {
       title: 'Human Computer Interaction',
-      id: 'SENG3400',
+      id: 'SENG3500',
       credits: '3',
       required: false,
     },
-    { title: 'Security I', id: 'SENG3400', credits: '2', required: true },
+    { title: 'Database Systems', id: 'SENG3400', credits: '5', required: true },
     {
-      title: 'Software Architecture',
-      id: 'SENG3400',
+      title: 'Human Computer Interaction',
+      id: 'SENG3500',
       credits: '3',
-      required: true,
+      required: false,
     },
+    { title: 'Database Systems', id: 'SENG3400', credits: '5', required: true },
+    {
+      title: 'Human Computer Interaction',
+      id: 'SENG3500',
+      credits: '3',
+      required: false,
+    },
+    { title: 'Database Systems', id: 'SENG3400', credits: '5', required: true },
+    {
+      title: 'Human Computer Interaction',
+      id: 'SENG3500',
+      credits: '3',
+      required: false,
+    },
+    { title: 'Database Systems', id: 'SENG3400', credits: '5', required: true },
+    {
+      title: 'Human Computer Interaction',
+      id: 'SENG3500',
+      credits: '3',
+      required: false,
+    },
+    { title: 'Database Systems', id: 'SENG3400', credits: '5', required: true },
+    {
+      title: 'Human Computer Interaction',
+      id: 'SENG3500',
+      credits: '3',
+      required: false,
+    },
+    { title: 'Database Systems', id: 'SENG3400', credits: '5', required: true },
+    {
+      title: 'Human Computer Interaction',
+      id: 'SENG3500',
+      credits: '3',
+      required: false,
+    },
+    { title: 'Database Systems', id: 'SENG3400', credits: '5', required: true },
+    {
+      title: 'Human Computer Interaction',
+      id: 'SENG3500',
+      credits: '3',
+      required: false,
+    },
+    { title: 'Database Systems', id: 'SENG3400', credits: '5', required: true },
+    {
+      title: 'Human Computer Interaction',
+      id: 'SENG3500',
+      credits: '3',
+      required: false,
+    },
+    { title: 'Database Systems', id: 'SENG3400', credits: '5', required: true },
+    {
+      title: 'Human Computer Interaction',
+      id: 'SENG3500',
+      credits: '3',
+      required: false,
+    },
+    { title: 'Database Systems', id: 'SENG3400', credits: '5', required: true },
+    {
+      title: 'Human Computer Interaction',
+      id: 'SENG3500',
+      credits: '3',
+      required: false,
+    },
+    { title: 'Database Systems', id: 'SENG3400', credits: '5', required: true },
+    {
+      title: 'Human Computer Interaction',
+      id: 'SENG3500',
+      credits: '3',
+      required: false,
+    },
+    { title: 'Database Systems', id: 'SENG3400', credits: '5', required: true },
+    {
+      title: 'Human Computer Interaction',
+      id: 'SENG3500',
+      credits: '3',
+      required: false,
+    },
+    { title: 'Database Systems', id: 'SENG3400', credits: '5', required: true },
+  ],
+  terms: [
+    {
+      season: 'fall',
+      credits: 0,
+      year: 2018,
+      courses: [
+        {
+          title: 'Database Systems',
+          id: 'SENG3400',
+          credits: '5',
+          required: true,
+        },
+        {
+          title: 'Human Computer Interaction',
+          id: 'SENG3500',
+          credits: '3',
+          required: false,
+        },
+        {
+          title: 'Database Systems',
+          id: 'SENG3400',
+          credits: '5',
+          required: true,
+        },
+        {
+          title: 'Human Computer Interaction',
+          id: 'SENG3500',
+          credits: '3',
+          required: false,
+        },
+      ],
+    },
+    {
+      season: 'spring',
+      credits: 0,
+      year: 2019,
+      courses: [
+        {
+          title: 'Database Systems',
+          id: 'SENG3400',
+          credits: '5',
+          required: true,
+        },
+        {
+          title: 'Human Computer Interaction',
+          id: 'SENG3500',
+          credits: '3',
+          required: false,
+        },
+        {
+          title: 'Human Computer Interaction',
+          id: 'SENG3500',
+          credits: '3',
+          required: false,
+        },
+        {
+          title: 'Database Systems',
+          id: 'SENG3400',
+          credits: '5',
+          required: true,
+        },
+        {
+          title: 'Human Computer Interaction',
+          id: 'SENG3500',
+          credits: '3',
+          required: false,
+        },
+      ],
+    },
+    {
+      season: 'fall',
+      credits: 0,
+      year: 2019,
+      courses: [
+        {
+          title: 'Database Systems',
+          id: 'SENG3400',
+          credits: '5',
+          required: true,
+        },
+        {
+          title: 'Human Computer Interaction',
+          id: 'SENG3500',
+          credits: '3',
+          required: false,
+        },
+        {
+          title: 'Human Computer Interaction',
+          id: 'SENG3500',
+          credits: '3',
+          required: false,
+        },
+        {
+          title: 'Database Systems',
+          id: 'SENG3400',
+          credits: '5',
+          required: true,
+        },
+        {
+          title: 'Human Computer Interaction',
+          id: 'SENG3500',
+          credits: '3',
+          required: false,
+        },
+      ],
+    },
+    {
+      season: 'spring',
+      credits: 0,
+      year: 2020,
+      courses: [
+        {
+          title: 'Database Systems',
+          id: 'SENG3400',
+          credits: '5',
+          required: true,
+        },
+        {
+          title: 'Human Computer Interaction',
+          id: 'SENG3500',
+          credits: '3',
+          required: false,
+        },
+        {
+          title: 'Database Systems',
+          id: 'SENG3400',
+          credits: '5',
+          required: true,
+        },
+        {
+          title: 'Human Computer Interaction',
+          id: 'SENG3500',
+          credits: '3',
+          required: false,
+        },
+      ],
+    },
+    {
+      season: 'fall',
+      credits: 0,
+      year: 2020,
+      courses: [
+        {
+          title: 'Database Systems',
+          id: 'SENG3400',
+          credits: '5',
+          required: true,
+        },
+        {
+          title: 'Human Computer Interaction',
+          id: 'SENG3500',
+          credits: '3',
+          required: false,
+        },
+        {
+          title: 'Human Computer Interaction',
+          id: 'SENG3500',
+          credits: '3',
+          required: false,
+        },
+        {
+          title: 'Database Systems',
+          id: 'SENG3400',
+          credits: '5',
+          required: true,
+        },
+        {
+          title: 'Human Computer Interaction',
+          id: 'SENG3500',
+          credits: '3',
+          required: false,
+        },
+      ],
+    },
+    {
+      season: 'spring',
+      credits: 0,
+      year: 2021,
+      courses: [
+        {
+          title: 'Human Computer Interaction',
+          id: 'SENG3500',
+          credits: '3',
+          required: false,
+        },
+        {
+          title: 'Database Systems',
+          id: 'SENG3400',
+          credits: '5',
+          required: true,
+        },
+        {
+          title: 'Human Computer Interaction',
+          id: 'SENG3500',
+          credits: '3',
+          required: false,
+        },
+      ],
+    },
+    { season: 'fall', credits: 0, year: 2021, courses: [] },
+  ],
+  students: [
+    { name: 'david', username: 'magdavj@dunwoody.edu', year: 3 },
+    { name: 'david', username: 'magdavj@dunwoody.edu', year: 3 },
+    { name: 'david', username: 'magdavj@dunwoody.edu', year: 3 },
+    { name: 'david', username: 'magdavj@dunwoody.edu', year: 3 },
+    { name: 'david', username: 'magdavj@dunwoody.edu', year: 3 },
+    { name: 'david', username: 'magdavj@dunwoody.edu', year: 3 },
   ],
 })
 
@@ -129,11 +373,19 @@ export const signout = () => {
 export const setCourseSearch = (search) => {
   store.courseSearch = search
 }
+export const setStudentSearch = (search) => {
+  store.studentSearch = search
+}
+export const setTermSearch = (search) => {
+  store.termSearch = search
+}
 
 export const getCourse = (id) => {
   return store.courses.find(
     (course) => course.id.toLowerCase() == id.toLowerCase()
   )
 }
+
+export const addCourse = () => {}
 
 export default store

@@ -22,18 +22,19 @@ export const Wrapper = styled.div`
   flex-wrap: ${({ flexWrap }) => (flexWrap ? 'wrap' : 'nowrap')};
   align-items: ${({ alignItems }) => alignItems || 'normal'};
   justify-content: ${({ justifyContent }) => justifyContent || 'normal'};
-  background: transparent;
+  background: ${({ background }) => background || 'transparent'};
   width: ${({ width }) => width || '100%'};
   height: ${({ height }) => height || 'auto'};
   padding: ${({ padding }) => padding || '0'};
   margin: ${({ margin }) => margin || '0'};
   border-radius: ${({ radius }) => radius || '0'};
   overflow: ${({ scroll }) => (scroll ? 'auto' : 'visible')};
-  box-shadow: ${({ theme, shadow }) => (shadow ? theme.shadow.sm : '0')};
+  box-shadow: ${({ theme, shadow }) => (shadow ? theme.shadow.sm : 'none')};
   -webkit-box-shadow: ${({ theme, shadow }) =>
     shadow ? theme.shadow.sm : '0'};
   -moz-box-shadow: ${({ theme, shadow }) => (shadow ? theme.shadow.sm : '0')};
   transition: box-shadow 200ms;
+  border: ${({ border }) => border || 'none'};
 
   &:hover {
     -webkit-box-shadow: ${({ theme, hover }) =>
@@ -50,6 +51,12 @@ export const Wrapper = styled.div`
       @media ${({ theme }) => theme.media.tablet} {
         flex-direction: row;
         align-items: center;
+      }
+    `}
+  ${({ credit }) =>
+    credit &&
+    css`
+      border: 1px solid ${({ theme }) => theme.colors.white}
       }
     `}
 `

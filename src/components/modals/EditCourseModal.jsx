@@ -1,14 +1,16 @@
-import { useState } from 'react'
 import Modal from 'react-modal'
 
 import { Wrapper } from '../../styles/containers'
 import { Btn, Input, Label, Text } from '../../styles/items'
+import useForm from '../hooks/useForm'
 Modal.setAppElement('#root')
 
 export default ({ isOpen, closeModal, course }) => {
-  const [title, setTitle] = useState(course.title)
-  const [code, setCode] = useState(course.id)
-  const [credits, setCredits] = useState(course.credits)
+  const [{ title, code, credits }, handleChange] = useForm({
+    title: course.title,
+    code: course.id,
+    credits: course.credits,
+  })
 
   const handleEdit = () => {
     console.log(`"${title}" edited`)
@@ -28,34 +30,37 @@ export default ({ isOpen, closeModal, course }) => {
       <Wrapper width="auto" margin="1rem" column>
         <Label modal>title</Label>
         <Input
+          name="title"
           fontSize="1.25rem"
           border
           placeholder="title"
           modal
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={handleChange}
         />
       </Wrapper>
       <Wrapper width="auto" margin="1rem" column>
         <Label modal>code</Label>
         <Input
+          name="code"
           fontSize="1.25rem"
           border
           placeholder="code"
           modal
           value={code}
-          onChange={(e) => setCode(e.target.value)}
+          onChange={handleChange}
         />
       </Wrapper>
       <Wrapper width="auto" margin="1rem" column>
         <Label modal>credits</Label>
         <Input
+          name="credits"
           fontSize="1.25rem"
           border
           placeholder="credits"
           modal
           value={credits}
-          onChange={(e) => setCredits(e.target.value)}
+          onChange={handleChange}
         />
       </Wrapper>
       {title && code && credits ? (

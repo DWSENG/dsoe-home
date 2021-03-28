@@ -6,17 +6,17 @@ import useForm from '../hooks/useForm'
 Modal.setAppElement('#root')
 
 export default ({ isOpen, closeModal }) => {
-  const [{ title, code, credits }, handleChange] = useForm({
-    title: '',
-    code: '',
-    credits: '',
+  const [{ name, username, year }, handleChange] = useForm({
+    name: '',
+    username: '',
+    year: '',
   })
 
   const handleAdd = () => {
     /**
      * TODO
      */
-    console.log(`"${title}" added`)
+    console.log(`"${name}" added`)
     closeModal()
   }
 
@@ -24,49 +24,49 @@ export default ({ isOpen, closeModal }) => {
     <Modal
       isOpen={isOpen}
       onRequestClose={closeModal}
-      contentLabel="add course"
+      contentLabel="add student"
       style={modalStyles}
     >
       <Text color="white" fontSize="2rem">
-        add course
+        add student
       </Text>
       <Wrapper width="auto" margin="1rem" column>
-        <Label modal>title</Label>
+        <Label modal>name</Label>
         <Input
-          name="title"
+          name="name"
           fontSize="1.25rem"
           border
-          placeholder="title"
+          placeholder="name"
           modal
-          value={title}
+          value={name}
           onChange={handleChange}
         />
       </Wrapper>
       <Wrapper width="auto" margin="1rem" column>
-        <Label modal>code</Label>
+        <Label modal>username</Label>
         <Input
-          name="code"
+          name="username"
           fontSize="1.25rem"
           border
-          placeholder="code"
+          placeholder="username"
           modal
-          value={code}
+          value={username}
           onChange={handleChange}
         />
       </Wrapper>
       <Wrapper width="auto" margin="1rem" column>
-        <Label modal>credits</Label>
+        <Label modal>year</Label>
         <Input
-          name="credits"
+          name="year"
           fontSize="1.25rem"
           border
-          placeholder="credits"
+          placeholder="year"
           modal
-          value={credits}
+          value={year}
           onChange={handleChange}
         />
       </Wrapper>
-      {title && code && credits ? (
+      {name && username && year ? (
         <Btn secondary onClick={handleAdd}>
           add
         </Btn>

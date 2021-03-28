@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components'
 
-// BUTTONS
+/* ******************************** BUTTONS ******************************** */
 export const Btn = styled.button`
-  cursor: pointer;
+  cursor: ${({ cursor }) => cursor || 'pointer'};
   color: ${({ theme }) => theme.colors.white};
   background: ${({ theme }) => theme.colors.pri};
   transition: transform 250ms;
@@ -124,9 +124,9 @@ export const Btn = styled.button`
       }
     `}
 `
-
+/* ******************************** TEXT ******************************** */
 export const Title = styled.h1`
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.dark};
   font-size: 3rem;
   ${({ xl }) =>
     xl &&
@@ -209,8 +209,18 @@ export const Text = styled.p`
         display: inline;
       }
     `}
+    ${({ white, theme }) =>
+    white &&
+    css`
+      color: ${({ theme }) => theme.colors.white};
+    `}
+    ${({ light, theme }) =>
+    light &&
+    css`
+      color: ${({ theme }) => theme.colors.light};
+    `}
 `
-
+/* ******************************** IMGS ******************************** */
 export const Img = styled.img`
   height: 2rem;
   margin-bottom: 3rem;
@@ -229,15 +239,17 @@ export const Img = styled.img`
     display: none;
   }
 `
-export const Input = styled.input.attrs(({ type }) => ({
+/* ******************************** INPUT ******************************** */
+export const Input = styled.input.attrs(({ type, name }) => ({
   type: type || 'text',
+  name: name || '',
 }))`
   outline: none;
   background: transparent;
   font-size: ${({ fontSize }) => fontSize || '1.5rem'};
   border: ${({ theme, border }) =>
     border ? `2px solid ${theme.colors.pri}` : 'none'};
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   overflow: hidden;
   padding: ${({ padding }) => padding || '.5rem'};
 
@@ -263,13 +275,15 @@ export const Label = styled.label`
     `};
 `
 export const Card = styled.article`
-  cursor: pointer;
+  cursor: ${({ cursor }) => cursor || 'pointer'};
   width: ${({ width }) => width || '200px'};
+  min-width: ${({ minWidth }) => minWidth && '150px'};
   height: ${({ height }) => height || '200px'};
+  min-height: ${({ minHeight }) => minHeight && '100px'};
   background: ${({ theme, background }) => background || theme.colors.white};
-  border-radius: ${({ theme }) => theme.radius.md};
-  padding: 1rem;
-  margin: 1rem;
+  border-radius: ${({ radius, theme }) => radius || theme.radius.md};
+  padding: ${({ padding }) => padding || '1rem'};
+  margin: ${({ margin }) => margin || '1rem'};
   display: flex;
   justify-content: space-between;
   flex-direction: ${({ row }) => (row ? 'row' : 'column')};
@@ -277,6 +291,8 @@ export const Card = styled.article`
   -moz-box-shadow: ${({ theme }) => theme.shadow.sm};
   box-shadow: ${({ theme }) => theme.shadow.sm};
   transition: transform 250ms;
+  overflow: ${({ scroll }) => (scroll ? 'scroll' : 'hidden')};
+
   &:hover,
   &:focus {
     transform: ${({ transform }) =>
@@ -284,6 +300,24 @@ export const Card = styled.article`
     -webkit-box-shadow: ${({ theme }) => theme.shadow.md};
     -moz-box-shadow: ${({ theme }) => theme.shadow.md};
     box-shadow: ${({ theme }) => theme.shadow.md};
+  }
+  ${({ primary }) =>
+    primary &&
+    css`
+      background: ${({ theme }) => theme.colors.pri};
+    `}
+  ${({ purple }) =>
+    purple &&
+    css`
+      background: ${({ theme }) => theme.colors.required};
+    `}
+  ${({ green }) =>
+    green &&
+    css`
+      background: ${({ theme }) => theme.colors.elective};
+    `}
+  @media ${({ theme }) => theme.media.mobile} {
+    min-width: ${({ minWidth }) => minWidth && '100px'};
   }
 `
 export const Tag = styled.div`
@@ -312,4 +346,12 @@ export const Tag = styled.div`
       border: 2px solid ${({ theme }) => theme.colors.pri};
       color: ${({ theme }) => theme.colors.pri};
     `};
+`
+
+export const A = styled.a.attrs(({ href }) => ({
+  target: '_blank',
+  href: href,
+}))`
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.pri};
 `

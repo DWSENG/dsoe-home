@@ -50,7 +50,7 @@ export default () => {
       <SearchBox
         search={search}
         setSearch={setSearch}
-        setCourseSearch={setCourseSearch}
+        setItemSearch={setCourseSearch}
       />
       <Wrapper flexWrap alignItems="center" justifyContent="space-around">
         {filteredCourses.length > 0 ? (

@@ -5,19 +5,19 @@ import store from './store'
 import { ThemeProvider } from 'styled-components'
 
 import { AppContainer } from './styles/containers'
-import Nav from './components/Nav'
+import StudentNav from './components/StudentNav'
 import Landing from './Pages/Landing'
 import PageSwitch from './routes/PageSwitch'
-
 import GlobalStyles from './theme/globalStyles'
 import theme from './theme/theme'
+import AdminNav from './components/AdminNav'
 
 export const App = () => {
-  const { isAuthenticated } = useProxy(store)
+  const { isAuthenticated, isAdmin } = useProxy(store)
 
   return isAuthenticated ? (
     <AppContainer>
-      <Nav />
+      {isAdmin ? <AdminNav /> : <StudentNav />}
       <PageSwitch />
     </AppContainer>
   ) : (

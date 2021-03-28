@@ -6,17 +6,16 @@ import useForm from '../hooks/useForm'
 Modal.setAppElement('#root')
 
 export default ({ isOpen, closeModal }) => {
-  const [{ title, code, credits }, handleChange] = useForm({
-    title: '',
-    code: '',
-    credits: '',
+  const [{ season, year }, handleChange] = useForm({
+    season: '',
+    year: '',
   })
 
   const handleAdd = () => {
     /**
      * TODO
      */
-    console.log(`"${title}" added`)
+    console.log(`"${season} ${year}" added`)
     closeModal()
   }
 
@@ -24,49 +23,37 @@ export default ({ isOpen, closeModal }) => {
     <Modal
       isOpen={isOpen}
       onRequestClose={closeModal}
-      contentLabel="add course"
+      contentLabel="add term"
       style={modalStyles}
     >
       <Text color="white" fontSize="2rem">
-        add course
+        add term
       </Text>
       <Wrapper width="auto" margin="1rem" column>
-        <Label modal>title</Label>
+        <Label modal>season</Label>
         <Input
-          name="title"
+          name="season"
           fontSize="1.25rem"
           border
-          placeholder="title"
+          placeholder="season"
           modal
-          value={title}
+          value={season}
           onChange={handleChange}
         />
       </Wrapper>
       <Wrapper width="auto" margin="1rem" column>
-        <Label modal>code</Label>
+        <Label modal>year</Label>
         <Input
-          name="code"
+          name="year"
           fontSize="1.25rem"
           border
-          placeholder="code"
+          placeholder="year"
           modal
-          value={code}
+          value={year}
           onChange={handleChange}
         />
       </Wrapper>
-      <Wrapper width="auto" margin="1rem" column>
-        <Label modal>credits</Label>
-        <Input
-          name="credits"
-          fontSize="1.25rem"
-          border
-          placeholder="credits"
-          modal
-          value={credits}
-          onChange={handleChange}
-        />
-      </Wrapper>
-      {title && code && credits ? (
+      {season && year ? (
         <Btn secondary onClick={handleAdd}>
           add
         </Btn>
