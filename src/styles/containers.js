@@ -25,6 +25,7 @@ export const Wrapper = styled.div`
   background: ${({ background }) => background || 'transparent'};
   width: ${({ width }) => width || '100%'};
   height: ${({ height }) => height || 'auto'};
+  max-height: ${({ maxHeight }) => maxHeight || 'auto'};
   padding: ${({ padding }) => padding || '0'};
   margin: ${({ margin }) => margin || '0'};
   border-radius: ${({ radius }) => radius || '0'};
@@ -68,7 +69,7 @@ export const Page = styled.section`
   align-items: center;
   padding: ${({ padding }) => padding || '0'};
   position: relative;
-  height: 100vh;
+  height: 100%;
   width: auto;
   max-width: 1919px;
   min-width: 320px;

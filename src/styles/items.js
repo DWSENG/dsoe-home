@@ -193,7 +193,8 @@ export const Text = styled.p`
   color: ${({ theme, color }) => color || theme.colors.dark};
   font-size: ${({ fontSize }) => fontSize || '1rem'};
   margin: ${({ margin }) => margin || '0'};
-  text-align: center;
+  width: ${({ width }) => width || 'auto'};
+  text-align: ${({ textAlign }) => textAlign || 'center'};
   ${({ primary }) =>
     primary &&
     css`
@@ -209,12 +210,12 @@ export const Text = styled.p`
         display: inline;
       }
     `}
-    ${({ white, theme }) =>
+    ${({ white }) =>
     white &&
     css`
       color: ${({ theme }) => theme.colors.white};
     `}
-    ${({ light, theme }) =>
+    ${({ light }) =>
     light &&
     css`
       color: ${({ theme }) => theme.colors.light};
@@ -292,6 +293,7 @@ export const Card = styled.article`
   box-shadow: ${({ theme }) => theme.shadow.sm};
   transition: transform 250ms;
   overflow: ${({ scroll }) => (scroll ? 'scroll' : 'hidden')};
+  border: ${({ border }) => border || 'none'};
 
   &:hover,
   &:focus {
