@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components'
 
-// BUTTONS
+/* ******************************** BUTTONS ******************************** */
 export const Btn = styled.button`
-  cursor: pointer;
+  cursor: ${({ cursor }) => cursor || 'pointer'};
   color: ${({ theme }) => theme.colors.white};
   background: ${({ theme }) => theme.colors.pri};
   transition: transform 250ms;
@@ -31,6 +31,22 @@ export const Btn = styled.button`
     css`
       background: ${({ theme }) => theme.colors.sec};
     `}
+  ${({ secondaryDisabled }) =>
+    secondaryDisabled &&
+    css`
+      background: ${({ theme }) => theme.colors.sec2};
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+      cursor: auto;
+      &:hover {
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        transform: scale(1);
+      }
+    `}
+  
   // TERTIARY BTN
   ${({ tertiary }) =>
     tertiary &&
@@ -108,9 +124,9 @@ export const Btn = styled.button`
       }
     `}
 `
-
+/* ******************************** TEXT ******************************** */
 export const Title = styled.h1`
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.dark};
   font-size: 3rem;
   ${({ xl }) =>
     xl &&
@@ -174,10 +190,11 @@ export const SubHeading = styled.p`
     `}
 `
 export const Text = styled.p`
-  color: ${({ theme, color }) => (color ? color : theme.colors.dark)};
-  font-size: ${({ fontSize }) => (fontSize ? fontSize : '1rem')};
-  margin: ${({ margin }) => (margin ? margin : '0')};
-  text-align: center;
+  color: ${({ theme, color }) => color || theme.colors.dark};
+  font-size: ${({ fontSize }) => fontSize || '1rem'};
+  margin: ${({ margin }) => margin || '0'};
+  width: ${({ width }) => width || 'auto'};
+  text-align: ${({ textAlign }) => textAlign || 'center'};
   ${({ primary }) =>
     primary &&
     css`
@@ -193,8 +210,18 @@ export const Text = styled.p`
         display: inline;
       }
     `}
+    ${({ white }) =>
+    white &&
+    css`
+      color: ${({ theme }) => theme.colors.white};
+    `}
+    ${({ light }) =>
+    light &&
+    css`
+      color: ${({ theme }) => theme.colors.light};
+    `}
 `
-
+/* ******************************** IMGS ******************************** */
 export const Img = styled.img`
   height: 2rem;
   margin-bottom: 3rem;
@@ -213,33 +240,51 @@ export const Img = styled.img`
     display: none;
   }
 `
-export const Input = styled.input`
+/* ******************************** INPUT ******************************** */
+export const Input = styled.input.attrs(({ type, name }) => ({
+  type: type || 'text',
+  name: name || '',
+}))`
   outline: none;
   background: transparent;
-  font-size: ${({ fontSize }) => (fontSize ? fontSize : '1.5rem')};
-  border: none;
-  border-radius: 1rem;
+  font-size: ${({ fontSize }) => fontSize || '1.5rem'};
+  border: ${({ theme, border }) =>
+    border ? `2px solid ${theme.colors.pri}` : 'none'};
+  border-radius: 0.5rem;
   overflow: hidden;
-  padding: ${({ padding }) => (padding ? padding : '.5rem')};
-  ${({ border }) =>
-    border &&
+  padding: ${({ padding }) => padding || '.5rem'};
+
+  ${({ modal }) =>
+    modal &&
     css`
-      border: 2px solid ${({ theme }) => theme.colors.pri};
-    `}
+      border: ${({ theme }) => `2px solid ${theme.colors.white}`};
+      color: ${({ theme }) => theme.colors.dark};
+      background: ${({ theme }) => theme.colors.white};
+      &::placeholder {
+        color: ${({ theme }) => theme.colors.light};
+      }
+    `};
 `
 export const Label = styled.label`
   font-size: 1rem;
   padding: 0.5rem;
+  margin-left: 1rem;
+  ${({ modal }) =>
+    modal &&
+    css`
+      color: ${({ theme }) => theme.colors.light};
+    `};
 `
 export const Card = styled.article`
-  cursor: pointer;
-  width: ${({ width }) => (width ? width : '200px')};
-  height: ${({ height }) => (height ? height : '200px')};
-  background: ${({ theme, background }) =>
-    background ? background : theme.colors.white};
-  border-radius: ${({ theme }) => theme.radius.md};
-  padding: 1rem;
-  margin: 1rem;
+  cursor: ${({ cursor }) => cursor || 'pointer'};
+  width: ${({ width }) => width || '200px'};
+  min-width: ${({ minWidth }) => minWidth && '150px'};
+  height: ${({ height }) => height || '200px'};
+  min-height: ${({ minHeight }) => minHeight && '100px'};
+  background: ${({ theme, background }) => background || theme.colors.white};
+  border-radius: ${({ radius, theme }) => radius || theme.radius.md};
+  padding: ${({ padding }) => padding || '1rem'};
+  margin: ${({ margin }) => margin || '1rem'};
   display: flex;
   justify-content: space-between;
   flex-direction: ${({ row }) => (row ? 'row' : 'column')};
@@ -247,6 +292,9 @@ export const Card = styled.article`
   -moz-box-shadow: ${({ theme }) => theme.shadow.sm};
   box-shadow: ${({ theme }) => theme.shadow.sm};
   transition: transform 250ms;
+  overflow: ${({ scroll }) => (scroll ? 'scroll' : 'hidden')};
+  border: ${({ border }) => border || 'none'};
+
   &:hover,
   &:focus {
     transform: ${({ transform }) =>
@@ -254,6 +302,24 @@ export const Card = styled.article`
     -webkit-box-shadow: ${({ theme }) => theme.shadow.md};
     -moz-box-shadow: ${({ theme }) => theme.shadow.md};
     box-shadow: ${({ theme }) => theme.shadow.md};
+  }
+  ${({ primary }) =>
+    primary &&
+    css`
+      background: ${({ theme }) => theme.colors.pri};
+    `}
+  ${({ purple }) =>
+    purple &&
+    css`
+      background: ${({ theme }) => theme.colors.required};
+    `}
+  ${({ green }) =>
+    green &&
+    css`
+      background: ${({ theme }) => theme.colors.elective};
+    `}
+  @media ${({ theme }) => theme.media.mobile} {
+    min-width: ${({ minWidth }) => minWidth && '100px'};
   }
 `
 export const Tag = styled.div`
@@ -282,4 +348,12 @@ export const Tag = styled.div`
       border: 2px solid ${({ theme }) => theme.colors.pri};
       color: ${({ theme }) => theme.colors.pri};
     `};
+`
+
+export const A = styled.a.attrs(({ href }) => ({
+  target: '_blank',
+  href: href,
+}))`
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.pri};
 `

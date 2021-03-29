@@ -9,25 +9,40 @@ export const AppContainer = styled.main`
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 0.5rem;
+  padding: 0.5rem 0 0.5rem 0.5rem;
   @media ${({ theme }) => theme.media.tablet} {
     flex-direction: column;
+    padding: 0.5rem 0.5rem 0 0.5rem;
   }
 `
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: ${({ column }) => (column ? 'column' : 'row')};
-  flex: ${({ flex }) => (flex ? flex : '0 1 auto')};
+  flex: ${({ flex }) => flex || '0 1 auto'};
   flex-wrap: ${({ flexWrap }) => (flexWrap ? 'wrap' : 'nowrap')};
-  align-items: ${({ alignItems }) => (alignItems ? alignItems : 'normal')};
-  justify-content: ${({ justifyContent }) =>
-    justifyContent ? justifyContent : 'normal'};
-
-  width: ${({ width }) => (width ? width : '100%')};
-  height: ${({ height }) => (height ? height : 'auto')};
-  border-radius: 0.75rem;
-  box-shadow: ${({ theme, shadow }) => (shadow ? theme.shadow.sm : '0')};
+  align-items: ${({ alignItems }) => alignItems || 'normal'};
+  justify-content: ${({ justifyContent }) => justifyContent || 'normal'};
+  background: ${({ background }) => background || 'transparent'};
+  width: ${({ width }) => width || '100%'};
+  height: ${({ height }) => height || 'auto'};
+  max-height: ${({ maxHeight }) => maxHeight || 'auto'};
+  padding: ${({ padding }) => padding || '0'};
+  margin: ${({ margin }) => margin || '0'};
+  border-radius: ${({ radius }) => radius || '0'};
   overflow: ${({ scroll }) => (scroll ? 'auto' : 'visible')};
+  box-shadow: ${({ theme, shadow }) => (shadow ? theme.shadow.sm : 'none')};
+  -webkit-box-shadow: ${({ theme, shadow }) =>
+    shadow ? theme.shadow.sm : '0'};
+  -moz-box-shadow: ${({ theme, shadow }) => (shadow ? theme.shadow.sm : '0')};
+  transition: box-shadow 200ms;
+  border: ${({ border }) => border || 'none'};
+
+  &:hover {
+    -webkit-box-shadow: ${({ theme, hover }) =>
+      hover ? theme.shadow.md : '0'};
+    -moz-box-shadow: ${({ theme, hover }) => (hover ? theme.shadow.md : '0')};
+    box-shadow: ${({ theme, hover }) => (hover ? theme.shadow.md : '0')};
+  }
 
   ${({ nav }) =>
     nav &&
@@ -39,55 +54,26 @@ export const Wrapper = styled.div`
         align-items: center;
       }
     `}
-
-  ${({ padding }) =>
-    padding &&
+  ${({ credit }) =>
+    credit &&
     css`
-      padding: 2rem;
-      @media ${({ theme }) => theme.media.tablet} {
-        padding: 1rem;
+      border: 1px solid ${({ theme }) => theme.colors.white}
       }
-    `}
-  ${({ margin }) =>
-    margin &&
-    css`
-      margin: ${margin};
-    `}
-  ${({ marginT }) =>
-    marginT &&
-    css`
-      margin-top: ${marginT};
-    `}
-  ${({ marginB }) =>
-    marginB &&
-    css`
-      margin-bottom: ${marginB};
-    `}
-  ${({ marginL }) =>
-    marginL &&
-    css`
-      margin-left: ${marginL};
-    `}
-  ${({ marginR }) =>
-    marginR &&
-    css`
-      margin-right: ${marginR};
     `}
 `
 export const Page = styled.section`
   flex: 1;
-  display: ${({ display }) => (display ? display : 'flex')};
+  display: ${({ display }) => display || 'flex'};
   flex-direction: ${({ column }) => (column ? 'column' : 'row')};
-  justify-content: ${({ justifyContent }) =>
-    justifyContent ? justifyContent : 'flex-start'};
+  justify-content: ${({ justifyContent }) => justifyContent || 'flex-start'};
   align-items: center;
-  padding: ${({ padding }) => (padding ? padding : '0')};
+  padding: ${({ padding }) => padding || '0'};
   position: relative;
-  height: 100vh;
+  height: 100%;
   width: auto;
   max-width: 1919px;
   min-width: 320px;
-  overflow: auto;
+  overflow: ${({ scroll }) => (scroll ? 'auto' : 'hidden')};
 
   @media ${({ theme }) => theme.media.tablet} {
     height: auto;
@@ -113,27 +99,7 @@ export const NavBar = styled.nav`
     justify-content: space-around;
   }
 `
-export const SearchContainer = styled.div`
-  padding: 0.75em 1.5em;
-  display: flex;
-  border-radius: ${({ theme }) => theme.radius.pill};
-  align-items: center;
-  justify-content: space-between;
-  -webkit-box-shadow: ${({ theme }) => theme.shadow.sm};
-  -moz-box-shadow: ${({ theme }) => theme.shadow.sm};
-  box-shadow: ${({ theme }) => theme.shadow.sm};
-  transition: transform 250ms;
-  &:hover,
-  &:focus,
-  &:active {
-    -webkit-box-shadow: ${({ theme }) => theme.shadow.md};
-    -moz-box-shadow: ${({ theme }) => theme.shadow.md};
-    box-shadow: ${({ theme }) => theme.shadow.md};
-  }
-  @media ${({ theme }) => theme.media.tablet} {
-    margin-bottom: 1rem;
-  }
-`
+
 export const LandingContainer = styled.section`
   display: flex;
   background: ${({ theme }) => theme.colors.pri};

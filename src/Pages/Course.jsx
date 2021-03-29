@@ -1,29 +1,39 @@
 import { useState } from 'react'
-import store, { getCourse } from '../store'
 import { useProxy } from 'valtio'
-import { useParams, useHistory } from 'react-router-dom'
+import store, { getCourse } from '../store'
+import { useParams } from 'react-router-dom'
 
 import { Page, Wrapper } from '../styles/containers'
 import { Title, Btn, SubHeading } from '../styles/items'
+import EditCourseModal from '../components/modals/EditCourseModal'
 
 export default () => {
-  const { courses } = useProxy(store)
+  const { isAdmin } = useProxy(store)
   const { id } = useParams()
   const course = getCourse(id)
-  const history = useHistory()
+  const [isOpen, setIsOpen] = useState(false)
 
-  const handleClick = (_id) => {
-    const idLower = _id.toLowerCase()
-    history.push(`/courses/${idLower}/edit`)
-  }
+  const openModal = () => setIsOpen(true)
+  const closeModal = () => setIsOpen(false)
 
   return (
     <Page column>
-      <Wrapper padding alignItems="center" justifyContent="space-between">
+      <EditCourseModal
+        isOpen={isOpen}
+        closeModal={closeModal}
+        course={course}
+      />
+      <Wrapper
+        padding="2rem 4rem"
+        alignItems="center"
+        justifyContent="space-between"
+      >
         <Title>{course.title}</Title>
-        <Btn secondary onClick={() => handleClick(id)}>
-          edit
-        </Btn>
+        {isAdmin && (
+          <Btn secondary onClick={openModal}>
+            edit
+          </Btn>
+        )}
       </Wrapper>
 
       <Wrapper
@@ -35,7 +45,7 @@ export default () => {
       >
         <SubHeading>{course.id}</SubHeading>
         <SubHeading>{course.credits} credits</SubHeading>
-        <SubHeading>{course.reuired ? 'required!' : 'elective'}</SubHeading>
+        <SubHeading>{course.required ? 'required!' : 'elective'}</SubHeading>
       </Wrapper>
     </Page>
   )

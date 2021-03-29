@@ -1,5 +1,5 @@
-import { Card, SubHeading, Title, Tag } from '../styles/items'
-import { Wrapper } from '../styles/containers'
+import { Card, SubHeading, Title, Tag } from '../../styles/items'
+import { Wrapper } from '../../styles/containers'
 import { useHistory } from 'react-router-dom'
 
 export default ({ course }) => {

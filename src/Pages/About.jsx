@@ -1,5 +1,6 @@
 import { Page } from '../styles/containers'
-import { Text } from '../styles/items'
+import { Text, A } from '../styles/items'
+import { FaGithub } from 'react-icons/fa'
 
 export default () => (
   <Page column alignItems="center" justifyContent="center">
@@ -11,8 +12,8 @@ export default () => (
       Program
     </Text>
     <Text margin="1rem">senior project by David Magnuson</Text>
-    <a target="_blank" href="https://github.com/davidbrekke/dsoe-home">
-      <Text>github</Text>
-    </a>
+    <A href="https://github.com/davidbrekke/dsoe-home">
+      <FaGithub size={25} />
+    </A>
   </Page>
 )

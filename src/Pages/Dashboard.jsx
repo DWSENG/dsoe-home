@@ -1,7 +1,7 @@
 import { Btn, Text, Title } from '../styles/items'
 import { Page } from '../styles/containers'
 import { useProxy } from 'valtio'
-import store, { signout } from '../store'
+import store, { signout, toggleAdmin } from '../store'
 import { logout } from '../utils/msalConfig'
 
 export default () => {
@@ -24,6 +24,9 @@ export default () => {
       <Text margin="1rem" fontSize=".75rem">
         {userAccount.username}
       </Text>
+      <Btn tertiary onClick={toggleAdmin}>
+        switch modes
+      </Btn>
       <Btn invert onClick={(userAccount) => handleLogout(userAccount)}>
         logout
       </Btn>
