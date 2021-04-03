@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import store from '../store'
+import store, { setPlan } from '../store'
 import { useProxy } from 'valtio'
 import { DragDropContext } from 'react-beautiful-dnd'
 
@@ -9,28 +9,19 @@ import PlanTermCard from '../components/cards/PlanTermCard'
 import { reorderTerms } from '../utils/dnd'
 
 export default ({ setBeenEdited }) => {
-  const { courses: coursesGlobal } = useProxy(store)
-  const [terms, setTerms] = useState({
-    remaining: coursesGlobal,
-    term1: [],
-    term2: [],
-    term3: [],
-    term4: [],
-    term5: [],
-    term6: [],
-  })
+  const { plan } = useProxy(store)
 
   const onDragEnd = ({ destination, source }) => {
     // dropped outside list
     if (!destination) return
 
-    setTerms(reorderTerms(terms, source, destination))
+    setPlan(reorderTerms(plan, source, destination))
     setBeenEdited(true)
   }
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <Wrapper height="100%" padding="1rem" scroll>
+      <Wrapper height="100%" padding="1rem">
         <Wrapper
           flexWrap
           scroll
@@ -42,14 +33,14 @@ export default ({ setBeenEdited }) => {
           justifyContent="space-around"
           alignItems="center"
         >
-          {Object.entries(terms).map(
+          {Object.entries(plan).map(
             ([key, value]) =>
               key != 'remaining' && (
                 <PlanTermCard key={key} courses={value} listId={key} />
               )
           )}
         </Wrapper>
-        {Object.entries(terms).map(
+        {Object.entries(plan).map(
           ([key, value]) =>
             key === 'remaining' && (
               <CourseList key={key} listId={key} courses={value} />
