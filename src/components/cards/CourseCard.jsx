@@ -1,22 +1,23 @@
-import { Card, SubHeading, Title, Tag } from '../../styles/items'
+import { Card, Text, Title, Tag } from '../../styles/items'
 import { Wrapper } from '../../styles/containers'
-import { useHistory } from 'react-router-dom'
 
-export default ({ course }) => {
-  const history = useHistory()
-
-  const handleClick = (_id) => {
-    const idLower = _id.toLowerCase()
-    history.push(`/courses/${idLower}`)
+export default ({ course, openCourseModal, setCourse }) => {
+  const handleClick = () => {
+    setCourse(course)
+    openCourseModal()
   }
 
   return (
-    <Card onClick={() => handleClick(course.id)}>
-      <Wrapper column alignItems="left" justifyContent="center">
-        <Title sm>{course.title}</Title>
-        <SubHeading courseCard sm>
-          {course.id}
-        </SubHeading>
+    <Card
+      width="max-content"
+      height="auto"
+      flex="1 0 200px"
+      maxWidth="250px"
+      onClick={handleClick}
+    >
+      <Wrapper column alignItems="left">
+        <Title sm>{course.courseTitle}</Title>
+        <Text margin=".5rem 1rem">{course.courseCode}</Text>
       </Wrapper>
       <Wrapper alignItems="center" justifyContent="space-around">
         <Tag required={course.required}>

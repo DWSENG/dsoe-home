@@ -24,7 +24,6 @@ const msalInstance = new PublicClientApplication(msalConfig)
 export const useLogin = async () => {
   try {
     const { account } = await msalInstance.loginPopup(loginRequest)
-    console.log(account)
     // TODO: query internal db to see if user is registered
     if (account) return account
   } catch (err) {

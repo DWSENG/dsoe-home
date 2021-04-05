@@ -8,11 +8,13 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
       'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-      -ms-overflow-style: none; /* IE and Edge */
+
+    // getting rid of scrollbars
+    -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* firefox */
     &::-webkit-scrollbar {
     display: none; /* Chrome, Safari and Opera */
+    }
   }
-}
 `
 export default GlobalStyles

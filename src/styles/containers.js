@@ -60,6 +60,15 @@ export const Wrapper = styled.div`
       border: 1px solid ${({ theme }) => theme.colors.white}
       }
     `}
+  ${({ glass }) =>
+    glass &&
+    css`
+      background: rgba( 158, 41, 51, 0.25 );
+      box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+      backdrop-filter: blur( 3px );
+      -webkit-backdrop-filter: blur( 3px );
+      }
+    `}
 `
 export const Page = styled.section`
   flex: 1;
@@ -115,3 +124,28 @@ export const LandingContainer = styled.section`
     justify-content: space-evenly;
   }
 `
+export const modalStyles = {
+  content: {
+    margin: 'auto',
+    width: 'max-content',
+    minWidth: '50%',
+    maxWidth: '90%',
+    height: 'max-content',
+    maxHeight: '90%',
+    position: 'absolute',
+    borderRadius: '1em',
+    border: 'none',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    // background: 'rgba( 158, 41, 51, 0.3 )',
+    background: 'rgba( 255, 255, 255, 0.5 )',
+    boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+    backdropFilter: 'blur( 5.0px )',
+    WebkitBackdropFilter: 'blur( 5.0px )',
+  },
+  overlay: {
+    background: 'transparent',
+  },
+}
