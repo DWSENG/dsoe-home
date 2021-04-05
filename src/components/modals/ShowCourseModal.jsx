@@ -5,8 +5,6 @@ import { Text, Title } from '../../styles/items'
 Modal.setAppElement('#root')
 
 export default ({ isOpen, closeModal, course }) => {
-  course && console.log('REQUIRED: ', course.required)
-
   const courseModalStyles = course && {
     ...modalStyles,
     content: {

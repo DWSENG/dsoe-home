@@ -53,6 +53,22 @@ export const Btn = styled.button`
     css`
       background: ${({ theme }) => theme.colors.ter};
     `}
+  // link BTN
+  ${({ link }) =>
+    link &&
+    css`
+      background: transparent;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+      font-size: 0.75rem;
+      &:hover {
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        transform: scale(1.03);
+      }
+    `}
   // GREEN BTN
   ${({ green }) =>
     green &&
