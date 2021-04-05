@@ -29,7 +29,8 @@ export const Wrapper = styled.div`
   padding: ${({ padding }) => padding || '0'};
   margin: ${({ margin }) => margin || '0'};
   border-radius: ${({ radius }) => radius || '0'};
-  overflow: ${({ scroll }) => (scroll ? 'auto' : 'visible')};
+  overflow: ${({ scroll, hidden }) =>
+    hidden ? 'hidden' : scroll ? 'auto' : 'visible'};
   box-shadow: ${({ theme, shadow }) => (shadow ? theme.shadow.sm : 'none')};
   -webkit-box-shadow: ${({ theme, shadow }) =>
     shadow ? theme.shadow.sm : '0'};

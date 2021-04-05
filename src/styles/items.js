@@ -345,7 +345,7 @@ export const Card = styled.article`
   box-shadow: ${({ theme, selected }) =>
     selected ? theme.shadow.pri : theme.shadow.sm};
   transition: transform 250ms;
-  overflow: ${({ scroll }) => (scroll ? 'scroll' : 'hidden')};
+  overflow: hidden;
   border: ${({ border }) => border || 'none'};
   transform: ${({ selected }) => selected && 'scale(1.03)'};
 

@@ -15,7 +15,7 @@ export default ({ course, openCourseModal, setCourse }) => {
       maxWidth="250px"
       onClick={handleClick}
     >
-      <Wrapper column alignItems="left">
+      <Wrapper column alignItems="left" hidden>
         <Title sm>{course.courseTitle}</Title>
         <Text margin=".5rem 1rem">{course.courseCode}</Text>
       </Wrapper>
