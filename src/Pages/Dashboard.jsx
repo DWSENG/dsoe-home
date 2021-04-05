@@ -5,7 +5,7 @@ import store, { signout, toggleAdmin } from '../store'
 import { logout } from '../utils/msalConfig'
 
 export default () => {
-  const { userAccount } = useProxy(store)
+  const { userAccount, isAdmin } = useProxy(store)
   const firstMiddle = userAccount?.name?.split(',')[1]
   const firstName = firstMiddle?.split(' ')[1]
 
@@ -25,7 +25,7 @@ export default () => {
         {userAccount.username}
       </Text>
       <Btn tertiary onClick={toggleAdmin}>
-        switch modes
+        {isAdmin ? 'student' : 'admin'} mode
       </Btn>
       <Btn invert onClick={(userAccount) => handleLogout(userAccount)}>
         logout

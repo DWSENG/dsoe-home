@@ -2,14 +2,17 @@ import { useState } from 'react'
 import store, { setPlan } from '../store'
 import { useProxy } from 'valtio'
 import { DragDropContext } from 'react-beautiful-dnd'
+import { useQuery } from '@apollo/client'
 
 import { Wrapper } from '../styles/containers'
 import CourseList from '../components/CourseList'
 import PlanTermCard from '../components/cards/PlanTermCard'
 import { reorderTerms } from '../utils/dnd'
+import { GET_COURSES } from '../api/queries'
 
 export default ({ setBeenEdited }) => {
   const { plan } = useProxy(store)
+  const { loading, error, data } = useQuery(GET_COURSES)
 
   const onDragEnd = ({ destination, source }) => {
     // dropped outside list

@@ -1,40 +1,48 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useProxy } from 'valtio'
-import store, { setCourseSearch } from '../store'
+import { useQuery } from '@apollo/client'
 
+import store from '../store'
 import { Page, Wrapper } from '../styles/containers'
 import { Title, Btn, Text } from '../styles/items'
+import { GET_COURSES } from '../api/queries'
 import CourseCard from '../components/cards/CourseCard'
 import SearchBox from '../components/SearchBox'
 import AddCourseModal from '../components/modals/AddCourseModal'
+import ShowCourseModal from '../components/modals/ShowCourseModal'
 
 export default () => {
+  const [course, setCourse] = useState(null)
   const [search, setSearch] = useState('')
   const [isOpen, setIsOpen] = useState(false)
-  const { courses, courseSearch, isAdmin } = useProxy(store)
-
-  useEffect(() => {
-    setSearch(courseSearch)
-  }, [])
+  const [courseIsOpen, setCourseIsOpen] = useState(false)
+  const { isAdmin } = useProxy(store)
+  const { loading, error, data } = useQuery(GET_COURSES)
 
   const openModal = () => setIsOpen(true)
   const closeModal = () => setIsOpen(false)
+  const openCourseModal = () => setCourseIsOpen(true)
+  const closeCourseModal = () => setCourseIsOpen(false)
 
-  const filteredCourses = courses.filter(({ title, id }) => {
-    if (search == '') return { title, id }
-    if (
-      title.toLowerCase().includes(search.toLowerCase()) ||
-      id.toLowerCase().includes(search.toLowerCase())
-    ) {
-      return title, id
+  if (loading) return <Text>Loading...</Text>
+  if (error) return <Text>{error}</Text>
+
+  const filteredCourses = data.courses.filter((course) => {
+    if (search == '') return course
+    if (course.courseTitle.toLowerCase().includes(search.toLowerCase())) {
+      return course
     }
-
     return
   })
 
   return (
     <Page column scroll>
       <AddCourseModal isOpen={isOpen} closeModal={closeModal} />
+      <ShowCourseModal
+        isOpen={courseIsOpen}
+        closeModal={closeCourseModal}
+        course={course}
+      />
       <Wrapper
         padding="2rem 4rem"
         alignItems="center"
@@ -47,15 +55,21 @@ export default () => {
           </Btn>
         )}
       </Wrapper>
-      <SearchBox
-        search={search}
-        setSearch={setSearch}
-        setItemSearch={setCourseSearch}
-      />
-      <Wrapper flexWrap alignItems="center" justifyContent="space-around">
+      <SearchBox search={search} setSearch={setSearch} />
+      <Wrapper
+        flexWrap
+        alignItems="center"
+        justifyContent="center"
+        padding="1rem"
+      >
         {filteredCourses.length > 0 ? (
           filteredCourses.map((course, key) => (
-            <CourseCard course={course} key={key} />
+            <CourseCard
+              setCourse={setCourse}
+              course={course}
+              openCourseModal={openCourseModal}
+              key={key}
+            />
           ))
         ) : (
           <Text>no course found matching '{search}'</Text>
