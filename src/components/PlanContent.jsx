@@ -24,7 +24,7 @@ export default ({ setBeenEdited }) => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <Wrapper height="100%" padding="1rem">
+      <Wrapper height="100%" plan padding="1rem">
         <Wrapper
           flexWrap
           scroll

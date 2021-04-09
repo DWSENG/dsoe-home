@@ -57,6 +57,14 @@ export const Wrapper = styled.div`
         align-items: center;
       }
     `}
+  ${({ plan }) =>
+    plan &&
+    css`
+      @media ${({ theme }) => theme.media.mobile} {
+        flex-direction: column-reverse;
+        align-items: center;
+      }
+    `}
   ${({ credit }) =>
     credit &&
     css`
