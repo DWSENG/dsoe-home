@@ -1,7 +1,9 @@
 import styled, { css } from 'styled-components'
 
 /* ******************************** BUTTONS ******************************** */
-export const Btn = styled.button`
+export const Btn = styled.button.attrs(({ type }) => ({
+  type: type && type,
+}))`
   cursor: ${({ cursor }) => cursor || 'pointer'};
   color: ${({ theme }) => theme.colors.white};
   background: ${({ theme }) => theme.colors.pri};
@@ -9,6 +11,7 @@ export const Btn = styled.button`
   font-size: 1rem;
   border: none;
   padding: 0.75em 1.25em;
+  height: min-content;
   border-radius: ${({ theme }) => theme.radius.md};
   display: flex;
   flex-direction: row;
@@ -150,6 +153,7 @@ export const Btn = styled.button`
 export const Title = styled.h1`
   color: ${({ theme }) => theme.colors.dark};
   font-size: 3rem;
+  text-align: center;
   ${({ xl }) =>
     xl &&
     css`

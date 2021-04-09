@@ -29,8 +29,10 @@ export const Wrapper = styled.div`
   padding: ${({ padding }) => padding || '0'};
   margin: ${({ margin }) => margin || '0'};
   border-radius: ${({ radius }) => radius || '0'};
+  position: relative;
   overflow: ${({ scroll, hidden }) =>
     hidden ? 'hidden' : scroll ? 'auto' : 'visible'};
+
   box-shadow: ${({ theme, shadow }) => (shadow ? theme.shadow.sm : 'none')};
   -webkit-box-shadow: ${({ theme, shadow }) =>
     shadow ? theme.shadow.sm : '0'};
@@ -64,10 +66,16 @@ export const Wrapper = styled.div`
   ${({ glass }) =>
     glass &&
     css`
-      background: rgba( 158, 41, 51, 0.25 );
+      background: rgba( 158, 41, 51, 0.5 );
       box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
       backdrop-filter: blur( 3px );
       -webkit-backdrop-filter: blur( 3px );
+      }
+    `}
+  ${({ wrapperBtns }) =>
+    wrapperBtns &&
+    css`
+      margin-top: 2rem;
       }
     `}
 `
@@ -141,10 +149,10 @@ export const modalStyles = {
     justifyContent: 'space-between',
     alignItems: 'center',
     // background: 'rgba( 158, 41, 51, 0.3 )',
-    background: 'rgba( 255, 255, 255, 0.5 )',
-    boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-    backdropFilter: 'blur( 5.0px )',
-    WebkitBackdropFilter: 'blur( 5.0px )',
+    background: 'rgba( 255, 255, 255, 0.65 )',
+    boxShadow: '4px 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+    backdropFilter: 'blur( 10px )',
+    WebkitBackdropFilter: 'blur( 10px )',
   },
   overlay: {
     background: 'transparent',
