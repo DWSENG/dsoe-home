@@ -1,11 +1,14 @@
 import Modal from 'react-modal'
+import { useMutation, gql } from '@apollo/client'
 
 import { Wrapper, modalStyles } from '../../styles/containers'
 import { Btn, Input, Label, Title, TextArea } from '../../styles/items'
 import useForm from '../hooks/useForm'
+import { CREATE_COURSE } from '../../api/mutations'
 Modal.setAppElement('#root')
 
 export default ({ isOpen, closeModal }) => {
+  const [createCourse] = useMutation(CREATE_COURSE)
   const [
     { title, code, credits, required, description },
     handleChange,
@@ -17,10 +20,19 @@ export default ({ isOpen, closeModal }) => {
     description: '',
   })
 
-  const handleAdd = () => {
+  const handleAdd = async () => {
     /**
      * TODO
      */
+    await createCourse({
+      variables: {
+        course_title: title,
+        course_code: code,
+        credits: credits,
+        course_description: description,
+        required: required,
+      },
+    }).catch((err) => console.log(err))
     console.log(`"${title}" added`)
     closeModal()
   }
@@ -125,7 +137,7 @@ export default ({ isOpen, closeModal }) => {
         />
       </Wrapper>
       {title && code && credits ? (
-        <Btn secondary onClick={handleAdd}>
+        <Btn secondary onClick={handleAdd} type="submit">
           add
         </Btn>
       ) : (

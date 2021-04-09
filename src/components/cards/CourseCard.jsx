@@ -16,8 +16,8 @@ export default ({ course, openCourseModal, setCourse }) => {
       onClick={handleClick}
     >
       <Wrapper column alignItems="left" hidden>
-        <Title sm>{course.courseTitle}</Title>
-        <Text margin=".5rem 1rem">{course.courseCode}</Text>
+        <Title sm>{course.course_title}</Title>
+        <Text margin=".5rem 1rem">{course.course_code}</Text>
       </Wrapper>
       <Wrapper alignItems="center" justifyContent="space-around">
         <Tag required={course.required}>
