@@ -17,11 +17,8 @@ import AdminNav from './components/AdminNav'
 
 // connect to graphql API
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql',
+  uri: 'http://127.0.0.1:4000/graphql',
   cache: new InMemoryCache(),
-  fetchOptions: {
-    mode: 'no-cors',
-  },
 })
 
 export const App = () => {
@@ -40,13 +37,13 @@ export const App = () => {
 }
 
 render(
-  <ApolloProvider client={client}>
-    <BrowserRouter>
+  <BrowserRouter>
+    <ApolloProvider client={client}>
       <ThemeProvider theme={theme}>
         <GlobalStyles />
         <App />
       </ThemeProvider>
-    </BrowserRouter>
-  </ApolloProvider>,
+    </ApolloProvider>
+  </BrowserRouter>,
   document.getElementById('root')
 )
