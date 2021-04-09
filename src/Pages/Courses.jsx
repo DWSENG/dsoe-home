@@ -10,12 +10,14 @@ import CourseCard from '../components/cards/CourseCard'
 import SearchBox from '../components/SearchBox'
 import AddCourseModal from '../components/modals/AddCourseModal'
 import ShowCourseModal from '../components/modals/ShowCourseModal'
+import EditCourseModal from '../components/modals/EditCourseModal'
 
 export default () => {
   const [course, setCourse] = useState(null)
   const [search, setSearch] = useState('')
   const [isOpen, setIsOpen] = useState(false)
   const [courseIsOpen, setCourseIsOpen] = useState(false)
+  const [courseEditIsOpen, setCourseEditIsOpen] = useState(false)
   const { isAdmin } = useProxy(store)
   const { loading, error, data } = useQuery(GET_COURSES)
 
@@ -23,6 +25,11 @@ export default () => {
   const closeModal = () => setIsOpen(false)
   const openCourseModal = () => setCourseIsOpen(true)
   const closeCourseModal = () => setCourseIsOpen(false)
+  const openCourseEditModal = () => {
+    setCourseIsOpen(false)
+    setCourseEditIsOpen(true)
+  }
+  const closeCourseEditModal = () => setCourseEditIsOpen(false)
 
   if (loading) return <Text>Loading...</Text>
   if (error) return <Text>{error}</Text>
@@ -38,10 +45,16 @@ export default () => {
   return (
     <Page column scroll>
       <AddCourseModal isOpen={isOpen} closeModal={closeModal} />
+      <EditCourseModal
+        isOpen={courseEditIsOpen}
+        course={course}
+        closeModal={closeCourseEditModal}
+      />
       <ShowCourseModal
         isOpen={courseIsOpen}
         closeModal={closeCourseModal}
         course={course}
+        openCourseEditModal={openCourseEditModal}
       />
       <Wrapper
         padding="2rem 4rem"

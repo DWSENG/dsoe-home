@@ -21,7 +21,7 @@ export default () => {
   if (loading) return <Text>Loading...</Text>
   if (error) return <Text>{error}</Text>
 
-  const students = data.users.filter((user) => {
+  const students = data?.users?.filter((user) => {
     if (user.isAdmin === false) return user
   })
 
@@ -48,7 +48,7 @@ export default () => {
         flexWrap
         padding="1rem 1rem 0 1rem"
       >
-        {students.map((student, key) => (
+        {students?.map((student, key) => (
           <StudentCard key={key} student={student} />
         ))}
       </Wrapper>

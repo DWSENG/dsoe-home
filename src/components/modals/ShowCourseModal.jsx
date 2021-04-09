@@ -1,10 +1,14 @@
 import Modal from 'react-modal'
+import { useProxy } from 'valtio'
 
-import { modalStyles } from '../../styles/containers'
-import { Text, Title } from '../../styles/items'
+import store from '../../store'
+import { modalStyles, Wrapper } from '../../styles/containers'
+import { Text, Title, Btn } from '../../styles/items'
 Modal.setAppElement('#root')
 
-export default ({ isOpen, closeModal, course }) => {
+export default ({ isOpen, closeModal, course, openCourseEditModal }) => {
+  const { isAdmin } = useProxy(store)
+
   const courseModalStyles = course && {
     ...modalStyles,
     content: {
@@ -20,10 +24,30 @@ export default ({ isOpen, closeModal, course }) => {
         contentLabel="add course"
         style={courseModalStyles}
       >
-        <Title>{course.courseTitle}</Title>
-        <Text fontSize="2rem">{course.courseCode}</Text>
-        <Text fontSize="1.5rem">{course.credits} credits</Text>
-        <Text fontSize="1.5rem">{course.courseDescription}</Text>
+        <Wrapper
+          column
+          alignItems="center"
+          justifyContent="space-between"
+          height="auto"
+          overflow
+        >
+          <Title>{course.course_title}</Title>
+          <Text fontSize="2rem">{course.course_code}</Text>
+          <Text fontSize="1.5rem">{course.credits} credits</Text>
+          <Text fontSize="1.5rem">{course.course_description}</Text>
+          <Wrapper
+            width="100%"
+            height="auto"
+            justifyContent="space-between"
+            alignItems="space-between"
+            wrapperBtns
+          >
+            <Btn link>delete</Btn>
+            <Btn onClick={openCourseEditModal} tertiary>
+              edit
+            </Btn>
+          </Wrapper>
+        </Wrapper>
       </Modal>
     )
   )
