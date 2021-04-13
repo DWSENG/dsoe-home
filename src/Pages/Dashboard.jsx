@@ -2,7 +2,7 @@ import { Btn, Text, Title } from '../styles/items'
 import { Page } from '../styles/containers'
 import { useProxy } from 'valtio'
 import store, { signout, toggleAdmin } from '../store'
-import { logout } from '../utils/msalConfig'
+import { logout } from '../hooks/useAuth'
 
 export default () => {
   const { userAccount, isAdmin } = useProxy(store)

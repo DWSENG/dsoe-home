@@ -1,7 +1,7 @@
 import { authenticate } from '../store'
 import { Btn, Title, SubHeading } from '../styles/items'
 import { LandingContainer, Wrapper } from '../styles/containers'
-import { useLogin } from '../utils/msalConfig'
+import { useLogin } from '../hooks/useAuth'
 import { useHistory } from 'react-router-dom'
 
 export default () => {

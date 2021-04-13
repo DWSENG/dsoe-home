@@ -3,7 +3,7 @@ import { useMutation, gql } from '@apollo/client'
 
 import { Wrapper, modalStyles } from '../../styles/containers'
 import { Btn, Input, Label, Title, TextArea } from '../../styles/items'
-import useForm from '../hooks/useForm'
+import useForm from '../../hooks/useForm'
 // import { CREATE_COURSE } from '../../api/mutations'
 Modal.setAppElement('#root')
 

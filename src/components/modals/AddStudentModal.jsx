@@ -2,7 +2,7 @@ import Modal from 'react-modal'
 
 import { Wrapper, modalStyles } from '../../styles/containers'
 import { Btn, Input, Label, Title } from '../../styles/items'
-import useForm from '../hooks/useForm'
+import useForm from '../../hooks/useForm'
 Modal.setAppElement('#root')
 
 export default ({ isOpen, closeModal }) => {
