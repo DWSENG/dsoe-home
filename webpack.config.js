@@ -1,16 +1,14 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+
+const { mode, publicPath } = require('./config')
+
 // const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin')
 // const deps = require('./package.json').dependencies
 
-const publicPath =
-  process.env.NODE_ENV === 'production'
-    ? 'https://dsoe.netlify.app/'
-    : 'http://localhost:8000/'
-
 module.exports = {
-  mode: process.env.NODE_ENV || 'development',
+  mode: mode || 'development',
 
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
@@ -18,7 +16,6 @@ module.exports = {
 
   output: {
     path: path.resolve(__dirname, 'dist'),
-    // assetModuleFilename: 'assets/[hash][ext][query]',
     publicPath: publicPath,
   },
 
@@ -37,6 +34,13 @@ module.exports = {
         type: 'asset',
       },
     ],
+  },
+
+  devServer: {
+    port: 8000,
+    contentBase: path.join(__dirname, 'dist'),
+    hot: true,
+    historyApiFallback: true,
   },
 
   plugins: [
@@ -66,11 +70,4 @@ module.exports = {
     //   },
     // }),
   ],
-
-  devServer: {
-    port: 8000,
-    contentBase: path.join(__dirname, 'dist'),
-    hot: true,
-    historyApiFallback: true,
-  },
 }
