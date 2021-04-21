@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Modal from 'react-modal'
 import { useMutation, gql } from '@apollo/client'
 
@@ -9,15 +10,12 @@ Modal.setAppElement('#root')
 
 export default ({ isOpen, closeModal, course }) => {
   // const [createCourse] = useMutation(CREATE_COURSE)
-  const [
-    { title, code, credits, required, description },
-    handleChange,
-  ] = useForm({
-    title: course?.course_title,
-    code: course?.course_code,
-    credits: course?.credits,
-    required: course?.required,
-    description: course?.course_description,
+  const [required, setRequired] = useState(false)
+  const [{ title, code, credits, description }, handleChange] = useForm({
+    title: course.course_title,
+    code: course.course_code,
+    credits: course.credits,
+    description: course.course_description,
   })
 
   return (
@@ -43,7 +41,7 @@ export default ({ isOpen, closeModal, course }) => {
             fontSize="1.25rem"
             placeholder="title..."
             modal
-            value={title}
+            value={course.course_title}
             onChange={handleChange}
           />
         </Wrapper>
@@ -61,7 +59,7 @@ export default ({ isOpen, closeModal, course }) => {
             fontSize="1.25rem"
             placeholder="code..."
             modal
-            value={code}
+            value={course.course_code}
             onChange={handleChange}
           />
         </Wrapper>
@@ -81,7 +79,7 @@ export default ({ isOpen, closeModal, course }) => {
             min="0"
             max="4"
             modal
-            value={credits}
+            value={course.credits}
             onChange={handleChange}
           />
         </Wrapper>
@@ -98,8 +96,8 @@ export default ({ isOpen, closeModal, course }) => {
             name="required"
             type="checkbox"
             modal
-            value={required}
-            onChange={handleChange}
+            checked={course.required}
+            onChange={(evt) => setRequired(evt.target.checked)}
           />
           <Label modal>required</Label>
         </Wrapper>
@@ -116,7 +114,7 @@ export default ({ isOpen, closeModal, course }) => {
             name="description"
             placeholder="description..."
             modal
-            value={description}
+            value={course.course_description}
             onChange={handleChange}
           />
         </Wrapper>

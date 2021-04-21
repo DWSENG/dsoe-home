@@ -1,39 +1,39 @@
+import { useState } from 'react'
 import Modal from 'react-modal'
-import { useMutation, gql } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 
 import { Wrapper, modalStyles } from '../../styles/containers'
 import { Btn, Input, Label, Title, TextArea } from '../../styles/items'
-import useForm from '../hooks/useForm'
+import useForm from '../../hooks/useForm'
 import { CREATE_COURSE } from '../../api/mutations'
+import { GET_COURSES } from '../../api/queries'
 Modal.setAppElement('#root')
 
 export default ({ isOpen, closeModal }) => {
-  const [createCourse] = useMutation(CREATE_COURSE)
-  const [
-    { title, code, credits, required, description },
-    handleChange,
-  ] = useForm({
+  const [createCourse, { error }] = useMutation(CREATE_COURSE, {
+    refetchQueries: [{ query: GET_COURSES }],
+  })
+  const [required, setRequired] = useState(false)
+  const [{ title, code, credits, description }, handleChange] = useForm({
     title: '',
     code: '',
     credits: 0,
-    required: false,
     description: '',
   })
 
-  const handleAdd = async () => {
-    /**
-     * TODO
-     */
-    await createCourse({
+  const handleAdd = () => {
+    createCourse({
       variables: {
         course_title: title,
         course_code: code,
-        credits: credits,
+        credits: parseInt(credits),
         course_description: description,
         required: required,
       },
-    }).catch((err) => console.log(err))
-    console.log(`"${title}" added`)
+    })
+    if (error) console.log(error)
+
+    console.log(`successssfully added`)
     closeModal()
   }
 
@@ -114,8 +114,8 @@ export default ({ isOpen, closeModal }) => {
           name="required"
           type="checkbox"
           modal
-          value={required}
-          onChange={handleChange}
+          checked={required}
+          onChange={(evt) => setRequired(evt.target.checked)}
         />
         <Label modal>required</Label>
       </Wrapper>

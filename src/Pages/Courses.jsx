@@ -13,7 +13,7 @@ import ShowCourseModal from '../components/modals/ShowCourseModal'
 import EditCourseModal from '../components/modals/EditCourseModal'
 
 export default () => {
-  const [course, setCourse] = useState(null)
+  const [course, setCourse] = useState({})
   const [search, setSearch] = useState('')
   const [isOpen, setIsOpen] = useState(false)
   const [courseIsOpen, setCourseIsOpen] = useState(false)
@@ -26,8 +26,8 @@ export default () => {
   const openCourseModal = () => setCourseIsOpen(true)
   const closeCourseModal = () => setCourseIsOpen(false)
   const openCourseEditModal = () => {
-    setCourseIsOpen(false)
     setCourseEditIsOpen(true)
+    setCourseIsOpen(false)
   }
   const closeCourseEditModal = () => setCourseEditIsOpen(false)
 
@@ -47,8 +47,8 @@ export default () => {
       <AddCourseModal isOpen={isOpen} closeModal={closeModal} />
       <EditCourseModal
         isOpen={courseEditIsOpen}
-        course={course}
         closeModal={closeCourseEditModal}
+        course={course}
       />
       <ShowCourseModal
         isOpen={courseIsOpen}

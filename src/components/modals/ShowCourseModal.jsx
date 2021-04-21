@@ -1,14 +1,10 @@
 import Modal from 'react-modal'
-import { useProxy } from 'valtio'
 
-import store from '../../store'
 import { modalStyles, Wrapper } from '../../styles/containers'
 import { Text, Title, Btn } from '../../styles/items'
 Modal.setAppElement('#root')
 
 export default ({ isOpen, closeModal, course, openCourseEditModal }) => {
-  const { isAdmin } = useProxy(store)
-
   const courseModalStyles = course && {
     ...modalStyles,
     content: {
@@ -29,7 +25,6 @@ export default ({ isOpen, closeModal, course, openCourseEditModal }) => {
           alignItems="center"
           justifyContent="space-between"
           height="auto"
-          overflow
         >
           <Title>{course.course_title}</Title>
           <Text fontSize="2rem">{course.course_code}</Text>
