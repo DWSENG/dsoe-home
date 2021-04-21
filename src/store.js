@@ -2,105 +2,12 @@ import { proxy } from 'valtio'
 
 const store = proxy({
   isAuthenticated: true,
-  userAccount: { name: ' , david', username: 'magdavj@dunwoody.edu' },
+  client: { first: 'david', last: 'magnuson', email: 'magdavj@dunwoody.edu' },
   isAdmin: false,
   courseSearch: '',
   studentSearch: '',
   termSearch: '',
-  courses: [
-    // {
-    //   title: 'Operating Systems',
-    //   courseId: 1,
-    //   courseCode: 'SENG3400',
-    //   preReqId: null,
-    //   courseDescription: '',
-    //   programId: null,
-    //   required: false,
-    //   instructionType: '',
-    //   category: '',
-    //   subCategory: '',
-    //   commentSetId: null,
-    //   credits: 4,
-    // },
-    { title: 'Database Systems', id: 'SENG3400', credits: '5', required: true },
-    {
-      title: 'Human Computer Interaction',
-      id: 'SENG3500',
-      credits: '3',
-      required: false,
-    },
-    { title: 'Database Systems', id: 'SENG3401', credits: '5', required: true },
-    {
-      title: 'Human Computer Interaction',
-      id: 'SENG3501',
-      credits: '3',
-      required: false,
-    },
-    { title: 'Database Systems', id: 'SENG3402', credits: '5', required: true },
-    {
-      title: 'Human Computer Interaction',
-      id: 'SENG3502',
-      credits: '3',
-      required: false,
-    },
-    { title: 'Database Systems', id: 'SENG3403', credits: '5', required: true },
-    {
-      title: 'Human Computer Interaction',
-      id: 'SENG3503',
-      credits: '3',
-      required: false,
-    },
-    { title: 'Database Systems', id: 'SENG3404', credits: '5', required: true },
-    {
-      title: 'Human Computer Interaction',
-      id: 'SENG3504',
-      credits: '3',
-      required: false,
-    },
-    { title: 'Database Systems', id: 'SENG3405', credits: '5', required: true },
-    {
-      title: 'Human Computer Interaction',
-      id: 'SENG3505',
-      credits: '3',
-      required: false,
-    },
-    { title: 'Database Systems', id: 'SENG3406', credits: '5', required: true },
-    {
-      title: 'Human Computer Interaction',
-      id: 'SENG3506',
-      credits: '3',
-      required: false,
-    },
-    { title: 'Database Systems', id: 'SENG3407', credits: '5', required: true },
-    {
-      title: 'Human Computer Interaction',
-      id: 'SENG3507',
-      credits: '3',
-      required: false,
-    },
-    { title: 'Database Systems', id: 'SENG3408', credits: '5', required: true },
-    {
-      title: 'Human Computer Interaction',
-      id: 'SENG3508',
-      credits: '3',
-      required: false,
-    },
-    { title: 'Database Systems', id: 'SENG3409', credits: '5', required: true },
-    {
-      title: 'Human Computer Interaction',
-      id: 'SENG3509',
-      credits: '3',
-      required: false,
-    },
-    { title: 'Database Systems', id: 'SENG3410', credits: '5', required: true },
-    {
-      title: 'Human Computer Interaction',
-      id: 'SENG3510',
-      credits: '3',
-      required: false,
-    },
-    { title: 'Database Systems', id: 'SENG3411', credits: '5', required: true },
-  ],
+
   terms: [
     {
       season: 'fall',
@@ -374,13 +281,13 @@ export const setPlan = (_plan) => {
   store.plan = _plan
 }
 
-export const authenticate = (account) => {
+export const authenticate = (client) => {
   store.isAuthenticated = true
-  store.userAccount = account
+  store.client = client
 }
 export const signout = () => {
   store.isAuthenticated = false
-  store.userAccount = {}
+  store.client = {}
 }
 export const toggleAdmin = () => {
   store.isAdmin = !store.isAdmin
@@ -395,13 +302,5 @@ export const setStudentSearch = (search) => {
 export const setTermSearch = (search) => {
   store.termSearch = search
 }
-
-export const getCourse = (id) => {
-  return store.courses.find(
-    (course) => course.id.toLowerCase() == id.toLowerCase()
-  )
-}
-
-export const addCourse = () => {}
 
 export default store

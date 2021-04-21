@@ -8,16 +8,16 @@ export default () => {
   const history = useHistory()
 
   const handleLogin = async () => {
-    const account = await useLogin()
-    if (account) {
-      authenticate(account)
+    const client = await useLogin()
+    if (client) {
+      authenticate(client)
     }
     history.push('/')
   }
   const handleGuestLogin = () => {
-    const account = { name: ' , Guest' }
-    if (account) {
-      authenticate(account)
+    const client = { name: ' , Guest' }
+    if (client) {
+      authenticate(client)
     }
     history.push('/')
   }
