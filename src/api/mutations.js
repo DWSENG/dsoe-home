@@ -24,3 +24,11 @@ export const CREATE_COURSE = gql`
     }
   }
 `
+export const DELETE_COURSE = gql`
+  mutation deleteCourse($course_id: String!) {
+    deleteCourse(course_id: $course_id) {
+      course_code
+      course_title
+    }
+  }
+`
