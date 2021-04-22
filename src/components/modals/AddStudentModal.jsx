@@ -1,15 +1,15 @@
 import Modal from 'react-modal'
 
-import { Wrapper } from '../../styles/containers'
-import { Btn, Input, Label, Text } from '../../styles/items'
-import useForm from '../hooks/useForm'
+import { Wrapper, modalStyles } from '../../styles/containers'
+import { Btn, Input, Label, Title } from '../../styles/items'
+import useForm from '../../hooks/useForm'
 Modal.setAppElement('#root')
 
 export default ({ isOpen, closeModal }) => {
-  const [{ name, username, year }, handleChange] = useForm({
-    name: '',
-    username: '',
-    year: '',
+  const [{ first, last, email }, handleChange] = useForm({
+    first: '',
+    last: '',
+    email: '',
   })
 
   const handleAdd = () => {
@@ -27,46 +27,63 @@ export default ({ isOpen, closeModal }) => {
       contentLabel="add student"
       style={modalStyles}
     >
-      <Text color="white" fontSize="2rem">
-        add student
-      </Text>
-      <Wrapper width="auto" margin="1rem" column>
-        <Label modal>name</Label>
+      <Title>Add a Student</Title>
+      <Wrapper
+        glass
+        padding="0 1rem 1rem 1rem"
+        radius=".5rem"
+        width="auto"
+        margin="1rem"
+        column
+      >
+        <Label modal>first</Label>
         <Input
-          name="name"
+          name="first"
           fontSize="1.25rem"
-          border
-          placeholder="name"
+          placeholder="first"
           modal
-          value={name}
+          value={first}
           onChange={handleChange}
         />
       </Wrapper>
-      <Wrapper width="auto" margin="1rem" column>
-        <Label modal>username</Label>
+      <Wrapper
+        glass
+        padding="0 1rem 1rem 1rem"
+        radius=".5rem"
+        width="auto"
+        margin="1rem"
+        column
+      >
+        <Label modal>last</Label>
         <Input
-          name="username"
+          name="last"
           fontSize="1.25rem"
-          border
-          placeholder="username"
+          placeholder="last"
           modal
-          value={username}
+          value={last}
           onChange={handleChange}
         />
       </Wrapper>
-      <Wrapper width="auto" margin="1rem" column>
-        <Label modal>year</Label>
+      <Wrapper
+        glass
+        padding="0 1rem 1rem 1rem"
+        radius=".5rem"
+        width="auto"
+        margin="1rem"
+        column
+      >
+        <Label modal>email</Label>
         <Input
-          name="year"
+          name="email"
           fontSize="1.25rem"
-          border
-          placeholder="year"
+          type="email"
+          placeholder="email"
           modal
-          value={year}
+          value={email}
           onChange={handleChange}
         />
       </Wrapper>
-      {name && username && year ? (
+      {first && last && email ? (
         <Btn secondary onClick={handleAdd}>
           add
         </Btn>
@@ -75,24 +92,4 @@ export default ({ isOpen, closeModal }) => {
       )}
     </Modal>
   )
-}
-
-const modalStyles = {
-  content: {
-    margin: 'auto',
-    width: 'max-content',
-    height: 'max-content',
-    position: 'absolute',
-    borderRadius: '1em',
-    border: 'none',
-    background: '#9e2933',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    boxShadow: '2px 2px 20px 3px rgba(0,0,0,.45)',
-  },
-  overlay: {
-    background: 'rgba(255, 255, 255, 0.85)',
-  },
 }

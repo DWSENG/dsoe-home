@@ -8,7 +8,7 @@ export default () => {
   const [beenEdited, setBeenEdited] = useState(false)
 
   return (
-    <Page column scroll>
+    <Page column>
       <PageHeader
         title="Plan"
         btnTitle="save"

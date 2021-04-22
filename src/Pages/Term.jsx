@@ -1,19 +1,17 @@
 import { useState } from 'react'
 import { useProxy } from 'valtio'
-import store, { getCourse } from '../store'
+import store from '../store'
 import { useParams } from 'react-router-dom'
 
 import { Page, Wrapper } from '../styles/containers'
-import { Title, Btn, Text, Card } from '../styles/items'
-import CourseCard from '../components/cards/CourseCard'
+import { Title, Text, Card } from '../styles/items'
+import TermCourseCard from '../components/cards/TermCourseCard'
 
 export default () => {
-  const { isAdmin, courses, students } = useProxy(store)
+  const { courses, students } = useProxy(store)
   const { id } = useParams()
-  const [isOpen, setIsOpen] = useState(false)
 
-  const openModal = () => setIsOpen(true)
-  const closeModal = () => setIsOpen(false)
+  const [selectedCourse, setSelectedCourse] = useState('')
 
   return (
     <Page column>
@@ -43,9 +41,22 @@ export default () => {
           <Wrapper margin="1rem 0 0 2rem">
             <Text fontSize="1.5rem">Courses</Text>
           </Wrapper>
-          {courses.map((course, index) => (
-            <CourseCard key={index} course={course} index={index} />
-          ))}
+          {courses.map((course, index) =>
+            course.id === selectedCourse ? (
+              <TermCourseCard
+                key={index}
+                course={course}
+                setSelectedCourse={setSelectedCourse}
+                selected
+              />
+            ) : (
+              <TermCourseCard
+                key={index}
+                course={course}
+                setSelectedCourse={setSelectedCourse}
+              />
+            )
+          )}
         </Wrapper>
         {/* students wrapper */}
         <Wrapper

@@ -1,16 +1,23 @@
 import { authenticate } from '../store'
 import { Btn, Title, SubHeading } from '../styles/items'
-import { LandingContainer } from '../styles/containers'
-import { useLogin } from '../utils/msalConfig'
+import { LandingContainer, Wrapper } from '../styles/containers'
+import { useLogin } from '../hooks/useAuth'
 import { useHistory } from 'react-router-dom'
 
 export default () => {
   const history = useHistory()
 
   const handleLogin = async () => {
-    const account = await useLogin()
-    if (account) {
-      authenticate(account)
+    const client = await useLogin()
+    if (client) {
+      authenticate(client)
+    }
+    history.push('/')
+  }
+  const handleGuestLogin = () => {
+    const client = { name: ' , Guest' }
+    if (client) {
+      authenticate(client)
     }
     history.push('/')
   }
@@ -24,9 +31,20 @@ export default () => {
         <b />
         Engineering
       </Title>
-      <Btn secondary onClick={handleLogin}>
-        login
-      </Btn>
+      <Wrapper
+        column
+        width="max-content"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Btn secondary onClick={handleLogin}>
+          login
+        </Btn>
+        <br />
+        <Btn link onClick={handleGuestLogin}>
+          continue as guest...
+        </Btn>
+      </Wrapper>
     </LandingContainer>
   )
 }

@@ -28,8 +28,10 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "@apollo/client": "^3.3.13",
     "@azure/msal-browser": "^2.11.1",
     "@babel/runtime": "^7.12.13",
+    "graphql": "^15.5.0",
     "react": "^17.0.1",
     "react-beautiful-dnd": "^13.1.0",
     "react-dom": "^17.0.1",

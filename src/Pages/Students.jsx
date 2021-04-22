@@ -1,34 +1,28 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useProxy } from 'valtio'
-import store, { setStudentSearch } from '../store'
+import store from '../store'
+import { useQuery } from '@apollo/client'
 
 import { Page, Wrapper } from '../styles/containers'
-import { Title, Btn, Text, Card } from '../styles/items'
-import SearchBox from '../components/SearchBox'
+import { Title, Btn, Text } from '../styles/items'
+import { GET_USERS } from '../api/queries'
 import AddStudentModal from '../components/modals/AddStudentModal'
+import StudentCard from '../components/cards/StudentCard'
 
 export default () => {
   const [search, setSearch] = useState('')
   const [isOpen, setIsOpen] = useState(false)
-  const { students, studentSearch, isAdmin } = useProxy(store)
-
-  useEffect(() => {
-    setSearch(studentSearch)
-  }, [])
+  const { isAdmin } = useProxy(store)
+  const { loading, error, data } = useQuery(GET_USERS)
 
   const openModal = () => setIsOpen(true)
   const closeModal = () => setIsOpen(false)
 
-  const filteredStudents = students.filter(({ name, username, year }) => {
-    if (search == '') return { name, username, year }
-    if (
-      name.toLowerCase().includes(search.toLowerCase()) ||
-      username.includes(search.toLowerCase())
-    ) {
-      return name, username, year
-    }
+  if (loading) return <Text>Loading...</Text>
+  if (error) return <Text>{error}</Text>
 
-    return
+  const students = data?.users?.filter((user) => {
+    if (user.isAdmin === false) return user
   })
 
   return (
@@ -46,11 +40,7 @@ export default () => {
           </Btn>
         )}
       </Wrapper>
-      <SearchBox
-        search={search}
-        setSearch={setSearch}
-        setItemSearch={setStudentSearch}
-      />
+
       <Wrapper
         alignItems="space-between"
         justifyContent="center"
@@ -58,22 +48,9 @@ export default () => {
         flexWrap
         padding="1rem 1rem 0 1rem"
       >
-        {filteredStudents.length > 0 ? (
-          filteredStudents.map((student, key) => (
-            <Card
-              radius=".75rem"
-              key={key}
-              column
-              width="auto"
-              height="max-content"
-            >
-              <p>{student.name}</p>
-              <p>{student.username}</p>
-            </Card>
-          ))
-        ) : (
-          <Text>no student found matching '{search}'</Text>
-        )}
+        {students?.map((student, key) => (
+          <StudentCard key={key} student={student} />
+        ))}
       </Wrapper>
     </Page>
   )

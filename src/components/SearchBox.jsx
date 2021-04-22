@@ -2,7 +2,7 @@ import { Wrapper } from '../styles/containers'
 import { Input } from '../styles/items'
 import { RiSearchLine } from 'react-icons/ri'
 
-export default ({ search, setSearch, setItemSearch }) => {
+export default ({ search, setSearch }) => {
   return (
     <Wrapper
       margin="1rem"
@@ -17,12 +17,11 @@ export default ({ search, setSearch, setItemSearch }) => {
         padding="0"
         onChange={(e) => {
           setSearch(e.target.value)
-          setItemSearch(e.target.value)
         }}
         value={search}
         placeholder="search..."
       />
-      <RiSearchLine size={20} style={{ color: '#9e2933' }} />
+      <RiSearchLine style={{ color: '#9e2933' }} />
     </Wrapper>
   )
 }

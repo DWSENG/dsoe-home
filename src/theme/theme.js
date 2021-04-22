@@ -15,7 +15,7 @@ export default {
     success: '#4BCA81',
     error: '#F13D3D',
     required: '#7577C4',
-    elective: '#78902B',
+    elective: '#199E84',
 
     white: '#fff',
     light: '#dee4e7',
@@ -33,7 +33,8 @@ export default {
   shadow: {
     sm: '2px 2px 20px 0px rgba(0,0,0,.25)',
     md: '2px 2px 20px 2px rgba(0,0,0,.35)',
-    lg: '2px 2px 20px 3px rgba(0,0,0,.45)',
+    lg: '2px 2px 30px 3px rgba(0,0,0,.45)',
+    pri: '3px 2px 35px 6px #9e293380',
   },
 
   media: {

@@ -1,7 +1,9 @@
 import styled, { css } from 'styled-components'
 
 /* ******************************** BUTTONS ******************************** */
-export const Btn = styled.button`
+export const Btn = styled.button.attrs(({ type }) => ({
+  type: type && type,
+}))`
   cursor: ${({ cursor }) => cursor || 'pointer'};
   color: ${({ theme }) => theme.colors.white};
   background: ${({ theme }) => theme.colors.pri};
@@ -9,6 +11,7 @@ export const Btn = styled.button`
   font-size: 1rem;
   border: none;
   padding: 0.75em 1.25em;
+  height: min-content;
   border-radius: ${({ theme }) => theme.radius.md};
   display: flex;
   flex-direction: row;
@@ -52,6 +55,28 @@ export const Btn = styled.button`
     tertiary &&
     css`
       background: ${({ theme }) => theme.colors.ter};
+    `}
+  // link BTN
+  ${({ link }) =>
+    link &&
+    css`
+      background: transparent;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+      font-size: 0.75rem;
+      &:hover {
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        transform: scale(1.03);
+      }
+    `}
+  // GREEN BTN
+  ${({ green }) =>
+    green &&
+    css`
+      background: ${({ theme }) => theme.colors.required};
     `}
   // ALT BTN
   ${({ invert }) =>
@@ -128,6 +153,7 @@ export const Btn = styled.button`
 export const Title = styled.h1`
   color: ${({ theme }) => theme.colors.dark};
   font-size: 3rem;
+  text-align: center;
   ${({ xl }) =>
     xl &&
     css`
@@ -194,7 +220,7 @@ export const Text = styled.p`
   font-size: ${({ fontSize }) => fontSize || '1rem'};
   margin: ${({ margin }) => margin || '0'};
   width: ${({ width }) => width || 'auto'};
-  text-align: ${({ textAlign }) => textAlign || 'center'};
+  text-align: ${({ textAlign }) => textAlign || 'normal'};
   ${({ primary }) =>
     primary &&
     css`
@@ -246,8 +272,33 @@ export const Input = styled.input.attrs(({ type, name }) => ({
   name: name || '',
 }))`
   outline: none;
-  background: transparent;
+  background: rgba(0, 0, 0, 0);
   font-size: ${({ fontSize }) => fontSize || '1.5rem'};
+  border: ${({ theme, border }) =>
+    border ? `2px solid ${theme.colors.pri}` : 'none'};
+  border-radius: 0.5rem;
+  overflow: hidden;
+  padding: ${({ padding }) => padding || '.5rem'};
+
+  ${({ modal }) =>
+    modal &&
+    css`
+      color: ${({ theme }) => theme.colors.dark};
+      background: ${({ theme }) => theme.colors.white};
+      &::placeholder {
+        color: ${({ theme }) => theme.colors.light};
+      }
+    `};
+`
+export const TextArea = styled.textarea.attrs(({ type, name }) => ({
+  type: type || 'text',
+  name: name || '',
+}))`
+  max-width: 20rem;
+  max-height: 8rem;
+  outline: none;
+  background: transparent;
+  font-size: ${({ fontSize }) => fontSize || '1rem'};
   border: ${({ theme, border }) =>
     border ? `2px solid ${theme.colors.pri}` : 'none'};
   border-radius: 0.5rem;
@@ -272,36 +323,43 @@ export const Label = styled.label`
   ${({ modal }) =>
     modal &&
     css`
-      color: ${({ theme }) => theme.colors.light};
+      color: ${({ theme }) => theme.colors.dark};
     `};
 `
 export const Card = styled.article`
   cursor: ${({ cursor }) => cursor || 'pointer'};
   width: ${({ width }) => width || '200px'};
-  min-width: ${({ minWidth }) => minWidth && '150px'};
+  min-width: ${({ minWidth }) => minWidth && minWidth};
+  max-width: ${({ maxWidth }) => maxWidth && maxWidth};
   height: ${({ height }) => height || '200px'};
   min-height: ${({ minHeight }) => minHeight && '100px'};
   background: ${({ theme, background }) => background || theme.colors.white};
   border-radius: ${({ radius, theme }) => radius || theme.radius.md};
   padding: ${({ padding }) => padding || '1rem'};
   margin: ${({ margin }) => margin || '1rem'};
+
   display: flex;
+  flex: ${({ flex }) => flex && flex};
   justify-content: space-between;
   flex-direction: ${({ row }) => (row ? 'row' : 'column')};
-  -webkit-box-shadow: ${({ theme }) => theme.shadow.sm};
-  -moz-box-shadow: ${({ theme }) => theme.shadow.sm};
-  box-shadow: ${({ theme }) => theme.shadow.sm};
+  -webkit-box-shadow: ${({ theme, selected }) =>
+    selected ? theme.shadow.pri : theme.shadow.sm};
+  -moz-box-shadow: ${({ theme, selected }) =>
+    selected ? theme.shadow.pri : theme.shadow.sm};
+  box-shadow: ${({ theme, selected }) =>
+    selected ? theme.shadow.pri : theme.shadow.sm};
   transition: transform 250ms;
-  overflow: ${({ scroll }) => (scroll ? 'scroll' : 'hidden')};
+  overflow: hidden;
   border: ${({ border }) => border || 'none'};
+  transform: ${({ selected }) => selected && 'scale(1.03)'};
 
   &:hover,
   &:focus {
     transform: ${({ transform }) =>
       transform ? `scale(${transform})` : 'scale(1.03)'};
-    -webkit-box-shadow: ${({ theme }) => theme.shadow.md};
-    -moz-box-shadow: ${({ theme }) => theme.shadow.md};
-    box-shadow: ${({ theme }) => theme.shadow.md};
+    -webkit-box-shadow: ${({ theme }) => theme.shadow.pri};
+    -moz-box-shadow: ${({ theme }) => theme.shadow.pri};
+    box-shadow: ${({ theme }) => theme.shadow.pri};
   }
   ${({ primary }) =>
     primary &&
@@ -331,7 +389,6 @@ export const Tag = styled.div`
   padding: 0.15rem 0.4rem;
   color: ${({ theme }) => theme.colors.white};
   background: ${({ theme }) => theme.colors.elective};
-  font-size: 0.75rem;
   width: max-content;
   border: 2px solid ${({ theme }) => theme.colors.elective};
   ${({ required }) =>
