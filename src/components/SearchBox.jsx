@@ -1,3 +1,6 @@
+// this is a search box component that
+// takes in a search variable and a set search function
+
 import { Wrapper } from '../styles/containers'
 import { Input } from '../styles/items'
 import { RiSearchLine } from 'react-icons/ri'

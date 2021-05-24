@@ -1,3 +1,5 @@
+// config file that exports a config object for simplier access throughout the app
+
 const NODE_ENV = 'development'
 const MSAL_CLIENT_ID = 'bb72efbb-2629-49d9-b101-d2c8055237dc'
 const MSAL_AUTHORITY =

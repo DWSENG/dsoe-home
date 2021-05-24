@@ -1,3 +1,6 @@
+// this file contains all of the non-container type styled components
+// styling using styled components, a CSS in JS library - https://styled-components.com
+
 import styled, { css } from 'styled-components'
 
 /* ******************************** BUTTONS ******************************** */
@@ -337,9 +340,9 @@ export const Card = styled.article`
   border-radius: ${({ radius, theme }) => radius || theme.radius.md};
   padding: ${({ padding }) => padding || '1rem'};
   margin: ${({ margin }) => margin || '1rem'};
-
   display: flex;
   flex: ${({ flex }) => flex && flex};
+  align-items: center;
   justify-content: space-between;
   flex-direction: ${({ row }) => (row ? 'row' : 'column')};
   -webkit-box-shadow: ${({ theme, selected }) =>
@@ -388,23 +391,14 @@ export const Tag = styled.div`
   border-radius: 0.25rem;
   padding: 0.15rem 0.4rem;
   color: ${({ theme }) => theme.colors.white};
-  background: ${({ theme }) => theme.colors.elective};
+  background: transparent;
   width: max-content;
-  border: 2px solid ${({ theme }) => theme.colors.elective};
+  border: 1px solid ${({ theme }) => theme.colors.white};
   ${({ required }) =>
     required &&
     css`
-      background: ${({ theme }) => theme.colors.required};
-      border: 2px solid ${({ theme }) => theme.colors.required};
-      color: ${({ theme }) => theme.colors.white};
+      border: none;
     `}
-  ${({ credits }) =>
-    credits &&
-    css`
-      background: ${({ theme }) => theme.colors.white};
-      border: 2px solid ${({ theme }) => theme.colors.pri};
-      color: ${({ theme }) => theme.colors.pri};
-    `};
 `
 
 export const A = styled.a.attrs(({ href }) => ({

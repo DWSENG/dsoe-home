@@ -1,3 +1,4 @@
+// this file is the design theme file that exports an object that is used with styled-components for a consistent design
 export default {
   colors: {
     pri: '#9e2933',
@@ -34,7 +35,7 @@ export default {
     sm: '2px 2px 20px 0px rgba(0,0,0,.25)',
     md: '2px 2px 20px 2px rgba(0,0,0,.35)',
     lg: '2px 2px 30px 3px rgba(0,0,0,.45)',
-    pri: '3px 2px 35px 6px #9e293380',
+    pri: '0 0 15px 1px #9e293380',
   },
 
   media: {

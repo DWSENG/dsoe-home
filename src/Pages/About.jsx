@@ -1,3 +1,5 @@
+// about page component
+
 import { Page } from '../styles/containers'
 import { Text, A } from '../styles/items'
 import { FaGithub } from 'react-icons/fa'

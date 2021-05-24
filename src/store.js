@@ -1,5 +1,9 @@
+// this file contains the global state store
+// using Valtio as the state library - https://github.com/pmndrs/valtio (basically a simplified version of a state system like redux or modx)
+
 import { proxy } from 'valtio'
 
+// store object that is accessible throughout the app
 const store = proxy({
   isAuthenticated: true,
   client: { first: 'david', last: 'magnuson', email: 'magdavj@dunwoody.edu' },
@@ -7,280 +11,10 @@ const store = proxy({
   courseSearch: '',
   studentSearch: '',
   termSearch: '',
-
-  terms: [
-    {
-      season: 'fall',
-      credits: 0,
-      year: 2018,
-      courses: [
-        {
-          title: 'Database Systems',
-          id: 'SENG3400',
-          credits: '5',
-          required: true,
-        },
-        {
-          title: 'Human Computer Interaction',
-          id: 'SENG3500',
-          credits: '3',
-          required: false,
-        },
-        {
-          title: 'Database Systems',
-          id: 'SENG3400',
-          credits: '5',
-          required: true,
-        },
-        {
-          title: 'Human Computer Interaction',
-          id: 'SENG3500',
-          credits: '3',
-          required: false,
-        },
-      ],
-    },
-    {
-      season: 'spring',
-      credits: 0,
-      year: 2019,
-      courses: [
-        {
-          title: 'Database Systems',
-          id: 'SENG3400',
-          credits: '5',
-          required: true,
-        },
-        {
-          title: 'Human Computer Interaction',
-          id: 'SENG3500',
-          credits: '3',
-          required: false,
-        },
-        {
-          title: 'Human Computer Interaction',
-          id: 'SENG3500',
-          credits: '3',
-          required: false,
-        },
-        {
-          title: 'Database Systems',
-          id: 'SENG3400',
-          credits: '5',
-          required: true,
-        },
-        {
-          title: 'Human Computer Interaction',
-          id: 'SENG3500',
-          credits: '3',
-          required: false,
-        },
-      ],
-    },
-    {
-      season: 'fall',
-      credits: 0,
-      year: 2019,
-      courses: [
-        {
-          title: 'Database Systems',
-          id: 'SENG3400',
-          credits: '5',
-          required: true,
-        },
-        {
-          title: 'Human Computer Interaction',
-          id: 'SENG3500',
-          credits: '3',
-          required: false,
-        },
-        {
-          title: 'Human Computer Interaction',
-          id: 'SENG3500',
-          credits: '3',
-          required: false,
-        },
-        {
-          title: 'Database Systems',
-          id: 'SENG3400',
-          credits: '5',
-          required: true,
-        },
-        {
-          title: 'Human Computer Interaction',
-          id: 'SENG3500',
-          credits: '3',
-          required: false,
-        },
-      ],
-    },
-    {
-      season: 'spring',
-      credits: 0,
-      year: 2020,
-      courses: [
-        {
-          title: 'Database Systems',
-          id: 'SENG3400',
-          credits: '5',
-          required: true,
-        },
-        {
-          title: 'Human Computer Interaction',
-          id: 'SENG3500',
-          credits: '3',
-          required: false,
-        },
-        {
-          title: 'Database Systems',
-          id: 'SENG3400',
-          credits: '5',
-          required: true,
-        },
-        {
-          title: 'Human Computer Interaction',
-          id: 'SENG3500',
-          credits: '3',
-          required: false,
-        },
-      ],
-    },
-    {
-      season: 'fall',
-      credits: 0,
-      year: 2020,
-      courses: [
-        {
-          title: 'Database Systems',
-          id: 'SENG3400',
-          credits: '5',
-          required: true,
-        },
-        {
-          title: 'Human Computer Interaction',
-          id: 'SENG3500',
-          credits: '3',
-          required: false,
-        },
-        {
-          title: 'Human Computer Interaction',
-          id: 'SENG3500',
-          credits: '3',
-          required: false,
-        },
-        {
-          title: 'Database Systems',
-          id: 'SENG3400',
-          credits: '5',
-          required: true,
-        },
-        {
-          title: 'Human Computer Interaction',
-          id: 'SENG3500',
-          credits: '3',
-          required: false,
-        },
-      ],
-    },
-    {
-      season: 'spring',
-      credits: 0,
-      year: 2021,
-      courses: [
-        {
-          title: 'Human Computer Interaction',
-          id: 'SENG3500',
-          credits: '3',
-          required: false,
-        },
-        {
-          title: 'Database Systems',
-          id: 'SENG3400',
-          credits: '5',
-          required: true,
-        },
-        {
-          title: 'Human Computer Interaction',
-          id: 'SENG3500',
-          credits: '3',
-          required: false,
-        },
-      ],
-    },
-    { season: 'fall', credits: 0, year: 2021, courses: [] },
-  ],
-  students: [
-    { name: 'david', username: 'magdavj@dunwoody.edu', year: 3 },
-    { name: 'david', username: 'magdavj@dunwoody.edu', year: 3 },
-    { name: 'david', username: 'magdavj@dunwoody.edu', year: 3 },
-    { name: 'david', username: 'magdavj@dunwoody.edu', year: 3 },
-    { name: 'david', username: 'magdavj@dunwoody.edu', year: 3 },
-    { name: 'david', username: 'magdavj@dunwoody.edu', year: 3 },
-  ],
-  plan: {
-    remaining: [
-      {
-        title: 'Database Systems',
-        id: 'SENG3400',
-        credits: '5',
-        required: true,
-      },
-      {
-        title: 'Human Computer Interaction',
-        id: 'SENG3500',
-        credits: '3',
-        required: false,
-      },
-      {
-        title: 'Database Systems',
-        id: 'SENG3401',
-        credits: '5',
-        required: true,
-      },
-      {
-        title: 'Human Computer Interaction',
-        id: 'SENG3501',
-        credits: '3',
-        required: false,
-      },
-      {
-        title: 'Database Systems',
-        id: 'SENG3402',
-        credits: '5',
-        required: true,
-      },
-      {
-        title: 'Human Computer Interaction',
-        id: 'SENG3502',
-        credits: '3',
-        required: false,
-      },
-      {
-        title: 'Database Systems',
-        id: 'SENG3403',
-        credits: '5',
-        required: true,
-      },
-      {
-        title: 'Human Computer Interaction',
-        id: 'SENG3503',
-        credits: '3',
-        required: false,
-      },
-    ],
-    term1: [],
-    term2: [],
-    term3: [],
-    term4: [],
-    term5: [],
-    term6: [],
-  },
+  plan: {},
 })
 
-export const setPlan = (_plan) => {
-  store.plan = _plan
-}
-
+// functions that mutate the state that are accessible throughout the app
 export const authenticate = (client) => {
   store.isAuthenticated = true
   store.client = client
@@ -296,11 +30,9 @@ export const toggleAdmin = () => {
 export const setCourseSearch = (search) => {
   store.courseSearch = search
 }
-export const setStudentSearch = (search) => {
-  store.studentSearch = search
-}
-export const setTermSearch = (search) => {
-  store.termSearch = search
+
+export const setPlan = (plan) => {
+  store.plan = plan
 }
 
 export default store

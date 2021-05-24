@@ -1,6 +1,8 @@
+// terms list page component
+
 import { useState, useEffect } from 'react'
 import { useProxy } from 'valtio'
-import store, { setTermSearch } from '../store'
+import store from '../store'
 import { useHistory } from 'react-router-dom'
 
 import { Page, Wrapper } from '../styles/containers'

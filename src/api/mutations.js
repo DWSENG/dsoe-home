@@ -1,3 +1,5 @@
+// this file defines the mutations to be used with the apollo server
+
 import { gql } from '@apollo/client'
 
 export const CREATE_COURSE = gql`

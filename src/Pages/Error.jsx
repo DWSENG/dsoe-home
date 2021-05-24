@@ -1,3 +1,5 @@
+// error page component
+
 import { Page } from '../styles/containers'
 import { Title } from '../styles/items'
 export default () => (

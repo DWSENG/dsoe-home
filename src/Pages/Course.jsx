@@ -1,3 +1,5 @@
+// single Course page component
+
 import { useState } from 'react'
 import { useProxy } from 'valtio'
 import store from '../store'

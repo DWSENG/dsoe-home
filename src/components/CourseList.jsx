@@ -1,9 +1,17 @@
+// Course list component used in the plan
+// droppable component
+
 import { Droppable } from 'react-beautiful-dnd'
 import { Wrapper } from '../styles/containers'
 import { Text } from '../styles/items'
 import PlanCourseCard from './cards/PlanCourseCard'
 
 export default ({ listId, courses }) => {
+  const creditsRemaining = courses.reduce(
+    (acc, { credits }) => acc + credits,
+    0
+  )
+
   return (
     <Droppable droppableId={listId}>
       {(dropProvided) => (
@@ -11,22 +19,29 @@ export default ({ listId, courses }) => {
           flexWrap
           scroll
           shadow
-          flex="1"
           radius=".75rem"
-          height="100%"
-          justifyContent="flex-start"
+          height="auto"
+          width="auto"
+          flex="1"
+          alignItems="flex-start"
+          courseList
           {...dropProvided.droppableProps}
           ref={dropProvided.innerRef}
         >
-          <Text
+          <Wrapper
             width="100%"
-            textAlign="left"
-            fontSize="1.5rem"
-            margin="1rem 0 0 1rem"
+            alignItems="center"
+            margin=".5rem 0 0 0"
+            justifyContent="space-around"
           >
-            courses remaining
-          </Text>
-          <Wrapper justifyContent="flex-start" flexWrap>
+            <Text textAlign="center" fontSize="1rem">
+              {courses.length} courses remaining
+            </Text>
+            <Text fontSize=".75rem" textAlign="center">
+              {creditsRemaining} credits
+            </Text>
+          </Wrapper>
+          <Wrapper justifyContent="space-around" alignItems="center" flexWrap>
             {courses.map((course, index) => (
               <PlanCourseCard course={course} index={index} key={index} />
             ))}

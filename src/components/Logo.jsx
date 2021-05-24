@@ -1,3 +1,6 @@
+// Logo component
+// used in Nav
+
 import { Img, Text } from '../styles/items'
 import logo from '../images/logo-white.png'
 

@@ -1,3 +1,5 @@
+// card component for the courses in courses page
+
 import { Card, Text, Title, Tag } from '../../styles/items'
 import { Wrapper } from '../../styles/containers'
 
@@ -5,6 +7,16 @@ export default ({ course, openCourseModal, setCourse }) => {
   const handleClick = () => {
     setCourse(course)
     openCourseModal()
+  }
+  const backgroundColor = ({ course_code }) => {
+    const code = course_code.substr(0, 4)
+    if (code === 'SENG') {
+      return '#0099d1'
+    }
+    if (code === 'ENGR') {
+      return '#7577C4'
+    }
+    return '#199E84'
   }
 
   return (
@@ -14,6 +26,7 @@ export default ({ course, openCourseModal, setCourse }) => {
       flex="1 0 200px"
       maxWidth="250px"
       onClick={handleClick}
+      background={backgroundColor(course)}
     >
       <Wrapper column alignItems="left" hidden>
         <Title sm>{course.course_title}</Title>

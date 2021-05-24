@@ -1,3 +1,5 @@
+// courses list page component
+
 import { useState } from 'react'
 import { useProxy } from 'valtio'
 import { useQuery } from '@apollo/client'
@@ -68,7 +70,7 @@ export default () => {
           </Btn>
         )}
       </Wrapper>
-      <SearchBox search={search} setSearch={setSearch} />
+      {/* <SearchBox search={search} setSearch={setSearch} /> */}
       <Wrapper
         flexWrap
         alignItems="center"

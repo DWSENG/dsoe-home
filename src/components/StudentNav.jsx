@@ -1,3 +1,5 @@
+// Admin Navbar component
+
 import { useState } from 'react'
 import { NavBar, Wrapper } from '../styles/containers'
 import { Btn } from '../styles/items'
@@ -25,17 +27,6 @@ export default () => {
     <NavBar>
       <Wrapper nav column>
         <Logo handleNav={handleNav} />
-        {page === 'dashboard' ? (
-          <Btn navSelected onClick={() => handleNav('dashboard')}>
-            <RiDashboardFill size={iconSize} />
-            <h3>dashboard</h3>
-          </Btn>
-        ) : (
-          <Btn nav onClick={() => handleNav('dashboard')}>
-            <RiDashboardFill size={iconSize} />
-            <h3>dashboard</h3>
-          </Btn>
-        )}
         {page === 'courses' ? (
           <Btn navSelected onClick={() => handleNav('courses')}>
             <MdClass size={iconSize} />

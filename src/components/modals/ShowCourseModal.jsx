@@ -1,3 +1,6 @@
+// modal component to show a course
+// alternative to going to the course page, just show this modal on the course list page
+
 import Modal from 'react-modal'
 import { useProxy } from 'valtio'
 import store from '../../store'
@@ -14,14 +17,6 @@ export default ({ isOpen, closeModal, course, openCourseEditModal }) => {
   const [deleteCourse, { error }] = useMutation(DELETE_COURSE, {
     refetchQueries: [{ query: GET_COURSES }],
   })
-
-  const courseModalStyles = course && {
-    ...modalStyles,
-    content: {
-      ...modalStyles.content,
-      background: course.required ? '#7577C480' : '#199E8480',
-    },
-  }
 
   const handleDelete = () => {
     confirm(`delete ${course.course_title}?`) &&
@@ -41,7 +36,7 @@ export default ({ isOpen, closeModal, course, openCourseEditModal }) => {
         isOpen={isOpen}
         onRequestClose={closeModal}
         contentLabel="add course"
-        style={courseModalStyles}
+        style={modalStyles}
       >
         <Wrapper
           column

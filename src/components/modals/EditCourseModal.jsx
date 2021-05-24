@@ -1,3 +1,5 @@
+// modal component to edit a course
+
 import { useState } from 'react'
 import Modal from 'react-modal'
 import { useMutation, gql } from '@apollo/client'

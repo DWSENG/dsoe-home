@@ -1,3 +1,5 @@
+// user dashboard page component
+
 import { Btn, Text, Title } from '../styles/items'
 import { Page } from '../styles/containers'
 import { useProxy } from 'valtio'

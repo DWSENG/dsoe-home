@@ -1,7 +1,6 @@
 import { render } from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import { useProxy } from 'valtio'
-import store from './store'
 import { ThemeProvider } from 'styled-components'
 import {
   ApolloClient,
@@ -12,10 +11,9 @@ import {
 } from '@apollo/client'
 import { onError } from '@apollo/client/link/error'
 
-import { AppContainer } from './styles/containers'
-
+import store from './store'
 import StudentNav from './components/StudentNav'
-
+import { AppContainer } from './styles/containers'
 import Landing from './Pages/Landing'
 import PageSwitch from './routes/PageSwitch'
 import GlobalStyles from './theme/globalStyles'

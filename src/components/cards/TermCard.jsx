@@ -1,3 +1,5 @@
+// card component for the terms in the terms page
+
 import { Wrapper } from '../../styles/containers'
 import { Card, Text } from '../../styles/items'
 

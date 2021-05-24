@@ -1,12 +1,14 @@
+// card component for the students in the students page
+
 import { Card, Text } from '../../styles/items'
 
-export default ({ student }) => {
+export default ({ student: { first_name, last_name, email } }) => {
   return (
     <Card radius=".75rem" column width="auto" height="max-content">
       <Text>
-        {student.first} {student.last}
+        {first_name} {last_name}
       </Text>
-      <Text>{student.email}</Text>
+      <Text>{email}</Text>
     </Card>
   )
 }

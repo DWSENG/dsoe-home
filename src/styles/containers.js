@@ -1,3 +1,6 @@
+// this file contains all of the container type styled components
+// styling using styled components, a CSS in JS library - https://styled-components.com
+
 import styled, { css } from 'styled-components'
 
 export const AppContainer = styled.main`
@@ -63,6 +66,15 @@ export const Wrapper = styled.div`
       @media ${({ theme }) => theme.media.mobile} {
         flex-direction: column-reverse;
         align-items: center;
+      }
+    `}
+  ${({ courseList }) =>
+    courseList &&
+    css`
+      margin: 1rem 1rem 1rem 0;
+
+      @media ${({ theme }) => theme.media.mobile} {
+        margin: 1rem;
       }
     `}
   ${({ credit }) =>

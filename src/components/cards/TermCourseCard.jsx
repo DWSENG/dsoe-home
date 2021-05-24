@@ -1,3 +1,5 @@
+// card component for the courses in a single term page
+
 import { Card, SubHeading, Title, Tag } from '../../styles/items'
 import { Wrapper } from '../../styles/containers'
 

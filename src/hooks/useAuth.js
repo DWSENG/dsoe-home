@@ -1,6 +1,10 @@
+// Auth hook that returns the user object
+
 import { PublicClientApplication } from '@azure/msal-browser'
+import { useQuery } from '@apollo/client'
 
 import { msal } from '../../config'
+import { GET_USER_BY_AZURE_TOKEN } from '../api/queries'
 
 const msalInstance = new PublicClientApplication(msal)
 const loginRequest = {
@@ -10,7 +14,6 @@ const loginRequest = {
 export const useLogin = async () => {
   try {
     const { account } = await msalInstance.loginPopup(loginRequest)
-    // TODO: query internal db to see if user is registered
     const {
       name,
       username: email,
@@ -27,12 +30,13 @@ export const useLogin = async () => {
       azureToken: aud,
     }
 
-    console.log(client)
-    if (account) return client
+    localStorage.setItem('azureToken', aud)
+    return client
   } catch (err) {
     console.log(err)
   }
 }
+
 export const logout = (account) => {
   try {
     msalInstance.logout({ account: account })

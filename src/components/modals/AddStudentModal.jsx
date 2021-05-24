@@ -1,3 +1,5 @@
+// modal component to add a student
+
 import Modal from 'react-modal'
 
 import { Wrapper, modalStyles } from '../../styles/containers'

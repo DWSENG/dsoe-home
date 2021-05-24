@@ -1,3 +1,5 @@
+// this is a Route component checking if the user is authenticated
+// NOT currently in use
 const { Route, Redirect } = require('react-router-dom')
 import { useProxy } from 'valtio'
 import store from '../store'

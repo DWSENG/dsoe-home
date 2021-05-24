@@ -1,3 +1,5 @@
+// modal component to add a term
+
 import Modal from 'react-modal'
 
 import { Wrapper } from '../../styles/containers'

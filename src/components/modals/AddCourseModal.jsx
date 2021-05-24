@@ -1,3 +1,5 @@
+// modal component to add a course
+
 import { useState } from 'react'
 import Modal from 'react-modal'
 import { useMutation } from '@apollo/client'
@@ -14,7 +16,7 @@ export default ({ isOpen, closeModal }) => {
     refetchQueries: [{ query: GET_COURSES }],
   })
   const [required, setRequired] = useState(false)
-  const [{ title, code, credits, description }, handleChange] = useForm({
+  const [{ title, code, credits, description }, handleChange, reset] = useForm({
     title: '',
     code: '',
     credits: 0,
@@ -35,6 +37,8 @@ export default ({ isOpen, closeModal }) => {
 
     console.log(`successssfully added`)
     closeModal()
+    setRequired(false)
+    reset()
   }
 
   return (
@@ -137,7 +141,7 @@ export default ({ isOpen, closeModal }) => {
         />
       </Wrapper>
       {title && code && credits ? (
-        <Btn secondary onClick={handleAdd} type="submit">
+        <Btn secondary onClick={handleAdd}>
           add
         </Btn>
       ) : (

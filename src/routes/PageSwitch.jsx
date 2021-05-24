@@ -1,3 +1,5 @@
+// this file contains all of the routes within the application
+
 import { Route, Switch } from 'react-router-dom'
 
 import About from '../Pages/About'

@@ -1,3 +1,5 @@
+// students list page component
+
 import { useState } from 'react'
 import { useProxy } from 'valtio'
 import store from '../store'
@@ -20,10 +22,6 @@ export default () => {
 
   if (loading) return <Text>Loading...</Text>
   if (error) return <Text>{error}</Text>
-
-  const students = data?.users?.filter((user) => {
-    if (user.isAdmin === false) return user
-  })
 
   return (
     <Page column scroll>
@@ -48,9 +46,10 @@ export default () => {
         flexWrap
         padding="1rem 1rem 0 1rem"
       >
-        {students?.map((student, key) => (
-          <StudentCard key={key} student={student} />
-        ))}
+        {data.users.map(
+          (user, key) =>
+            user.is_admin === false && <StudentCard key={key} student={user} />
+        )}
       </Wrapper>
     </Page>
   )
